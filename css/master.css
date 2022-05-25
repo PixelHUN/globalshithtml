@@ -25,9 +25,11 @@ html,body{
 }
 
 .character-name{
+  top: 25%;
   position: relative;
   text-align: center;
   innerText: "";
+  font-size: 32px;
 }
 
 .grid-cell{
