@@ -7,7 +7,7 @@ html,body{
   padding: 0;
   height: 100%;
   background: linear-gradient(180deg,#EEEEEE,#CCCCFF);
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Roboto Condensed', sans-serif;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -115,7 +115,9 @@ function randomFromArray(array)
       {
         players[playerId].host = 2;
         playerRef.set(players[playerId]);
-
+        var lobby = new Audio('./audio/lobby.mp3');
+        lobby.loop = true;
+        lobby.play();
       }
       if(snapshot.numChildren()===2 && players[playerId].host != 2)
       {
@@ -152,6 +154,8 @@ function randomFromArray(array)
       // számomra új csomópontok
       if(players[playerId].host===2 && playerNum > 1)
       {
+        var enter = new Audio('./audio/enter.mp3');
+        enter.play();
         const addedPlayer = snapshot.val();
         if(addedPlayer.host != 1)
         {
