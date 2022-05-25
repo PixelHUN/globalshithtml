@@ -13,15 +13,9 @@ html,body{
   justify-content: center;
 }
 
-.bg {
-  position: relative;
-  width: 450px;
-  height: 406px;
-  background: url(./images/world.png) no-repeat no-repeat;
-}
-
 .game-container {
   position: relative;
   width: 450px;
   height: 800px;
+  background: url(./images/world.png) no-repeat no-repeat;
 }
