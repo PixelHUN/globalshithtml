@@ -20,6 +20,10 @@ function randomFromArray(array)
 
   function EnterName()
   {
+    if(document.getElementById("nameinput").value === "")
+    {
+      return;
+    }
     username = document.getElementById("nameinput").value;
     firebase.auth().signInAnonymously().catch((error) => {
       var errorCode = error.code;
