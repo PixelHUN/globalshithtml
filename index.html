@@ -8,8 +8,17 @@
   <body>
     <div class="game-container">
       <div class="character-name"></div>
+      <div class="give-name">
+        <div>
+          <label for="nameinput">Játékosnév:</label>
+          <input type="text" id="nameinput" value="" maxlength=16 />
+        </div>
+        <div style="padding: 10px">
+          <button class="button" id="name-button" onclick="">Tovább</button>
+        </div>
+      </div>
       <div class="buttons">
-        <button class="button-host" id="button-host" onclick="">Tik-Tak...</button>
+        <button class="button-host" id="button-host" style="display: none" onclick="">Tik-Tak...</button>
       </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
