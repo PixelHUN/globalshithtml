@@ -15,7 +15,7 @@ html,body{
 
 .bg {
   position: relative;
-  width: 612px;
+  width: 450px;
   height: 406px;
   background: url(./images/world.png) no-repeat no-repeat;
 }
