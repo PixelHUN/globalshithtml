@@ -15,7 +15,86 @@ html,body{
 
 .game-container {
   position: relative;
+  align-items: center;
+  justify-content: center;
   width: 600px;
   height: 800px;
   background: url(./images/world.png) no-repeat no-repeat;
+}
+
+.character-name{
+  position: relative;
+  text-align: center;
+  innerText: "";
+}
+
+.grid-cell{
+  position: : absolute;
+  width: : 16px;
+  height: 16px;
+}
+
+.buttons{
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  width: 600px;
+  height: 300px;
+}
+
+.button {
+  background-color: #0BAAFF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4f;
+}
+
+.button:hover {
+  background-color: #0977DD;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button-host {
+  background-color: #0BAAFF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  transition-duration: 0.4f;
+}
+
+.button-host:hover {
+  background-color: #0977DD;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  border-radius: 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }

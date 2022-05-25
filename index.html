@@ -6,15 +6,31 @@
     <link rel="stylesheet" href="./css/master.css">
   </head>
   <body>
-    <div class="bg"></div>
     <div class="game-container">
+      <div class="character-name"></div>
+      <div class="buttons">
+        <button class="button-host" id="button-host" onclick="">Tik-Tak...</button>
+      </div>
     </div>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
-    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
 
-    <script defer src="./init-firebase.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyCBUBcmS9qBoVVsAXguJkmjB0cijRueTI8",
+        authDomain: "global-warm-thing.firebaseapp.com",
+        databaseURL: "https://global-warm-thing-default-rtdb.europe-west1.firebasedatabase.app",
+        projectId: "global-warm-thing",
+        storageBucket: "global-warm-thing.appspot.com",
+        messagingSenderId: "344052791538",
+        appId: "1:344052791538:web:f55763742ae885a4e7786b"
+      };
 
-    <script type="text/javascript" src="game.js"></script>
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+    </script>
+
+    <script src="game.js"></script>
   </body>
 </html>
