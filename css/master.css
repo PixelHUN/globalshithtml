@@ -1,0 +1,27 @@
+{
+    box-sizing: border-box;
+}
+
+html,body{
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: linear-gradient(180deg,#EEEEEE,#CCCCFF);
+  font-family: 'Source Sans Pro', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bg {
+  position: relative;
+  width: 612px;
+  height: 406px;
+  background: url(./images/world.png) no-repeat no-repeat;
+}
+
+.game-container {
+  position: relative;
+  width: 450px;
+  height: 800px;
+}
