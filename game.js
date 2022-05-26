@@ -11,12 +11,67 @@ function randomFromArray(array)
   let playerElements = {};
   let playerNames = [];
 
+  let countdownFinished = false;
+
   let playerNum = 0;
 
   const gameContainer = document.querySelector(".game-container");
 
   let username = "";
   document.getElementById("name-button").onclick = function() {EnterName()};
+  document.getElementById("button-host").onclick = function() {startGame()};
+
+  function countdown(timeleft = 10)
+  {
+    var timer = setInterval(function(){
+      if(timeleft <= 0){
+        clearInterval(timer);
+        document.querySelector(".countdown").innerText = "";
+        countdownFinished = true;
+      } else {
+        var min;
+        var sec;
+        if(timeleft>10)
+        {
+          document.querySelector(".countdown").style.fontSize = "32px";
+          min = Math.floor(timeleft/60);
+          sec = timeleft-min*60;
+          if(sec<10){
+            document.querySelector(".countdown").innerText = min+":0"+sec;
+          }else{
+            document.querySelector(".countdown").innerText = min+":"+sec;
+          }
+        }
+        else
+        {
+          document.querySelector(".countdown").style.fontSize = "42px";
+          document.querySelector(".countdown").innerText = timeleft;
+        }
+      }
+      timeleft -= 1;
+    }, 1000);
+  }
+
+  function waitForCountdown()
+  {
+    if(countdownFinished === false) {
+      window.setTimeout(waitForCountdown, 100); /* this checks the flag every 100 milliseconds*/
+    } else {
+      /* do something*/
+      game();
+    }
+  }
+
+  function startGame()
+  {
+    countdown(20);
+    waitForCountdown();
+  }
+
+  function game()
+  {
+    document.querySelector(".countdown").innerText = "Játék is happening!";
+  }
 
   function EnterName()
   {
@@ -47,7 +102,7 @@ function randomFromArray(array)
 
         playerRef.set({
           id: playerId,
-          host: 0,
+          host: false,
           uname: username,
           profile: "hetzmann-hont",
           money: 1
@@ -117,46 +172,57 @@ function randomFromArray(array)
       console.log("There are "+snapshot.numChildren()+" players");
       if(snapshot.numChildren()===1)
       {
-        players[playerId].host = 2;
+        players[playerId].host = true;
         playerRef.set(players[playerId]);
-        var lobby = new Audio('./audio/lobby.mp3');
+        document.querySelector(".character-name").innerText = "";
+        /*var lobby = new Audio('./audio/lobby.mp3');
         lobby.loop = true;
-        lobby.play();
-      }
-      if(snapshot.numChildren()===2 && players[playerId].host != 2)
-      {
-        players[playerId].host = 1;
-        playerRef.set(players[playerId]);
+        lobby.play();*/
       }
 
-      if(players[playerId].host === 1)
+      if(players[playerId].host === true)
       {
         document.getElementById("button-host").style.display = "";
+        document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
       }
       else {
         document.getElementById("button-host").style.display = "none";
       }
 
-      if(players[playerId].host === 2)
+      if(players[playerId].host === true)
       {
         const index = playerNames.indexOf(snapshot.val().uname);
         if (index > -1) {
           playerNames.splice(index, 1);
         }
-        document.querySelector(".character-name").innerText = playerNames;
+        var _pntext = "";
+          playerNames.forEach((item) => {
+            if(item!=undefined){
+              _pntext += item+", ";
+              console.log(item);
+            }
+          });
+          document.querySelector(".character-name").innerText = _pntext;
 
         const changedPlayer = snapshot.val();
-        if(changedPlayer.host != 1)
+        if(changedPlayer.host != true)
         {
           playerNames.push(changedPlayer.uname);
-          document.querySelector(".character-name").innerText = changedNames;
+          var _pntext = "";
+          playerNames.forEach((item) => {
+            if(item!=undefined){
+              _pntext += item+"   ";
+              console.log(item);
+            }
+          });
+          document.querySelector(".character-name").innerText = _pntext;
         }
       }
     })
 
     allPlayersRef.on("child_added", (snapshot) => {
       // számomra új csomópontok
-      if(players[playerId].host===2 && playerNum > 1)
+      if(players[playerId].host===true)
       {
         var enter = new Audio('./audio/enter.mp3');
         enter.play();
@@ -164,20 +230,36 @@ function randomFromArray(array)
         if(addedPlayer.host != 1)
         {
           playerNames.push(addedPlayer.uname);
-          document.querySelector(".character-name").innerText = playerNames;
+
+          var _pntext = "";
+          playerNames.forEach((item) => {
+            if(item!=undefined){
+              _pntext += item+"   ";
+              console.log(item);
+            }
+          });
+          document.querySelector(".character-name").innerText = _pntext;
         }
       }
     })
 
     allPlayersRef.on("child_removed", (snapshot) => {
       // csomópont eltünt :c
-      if(players[playerId].host===2)
+      if(players[playerId].host===true)
       {
         const index = playerNames.indexOf(snapshot.val().uname);
         if (index > -1) {
           playerNames.splice(index, 1);
         }
-        document.querySelector(".character-name").innerText = playerNames;
+
+        var _pntext = "";
+          playerNames.forEach((item) => {
+            if(item!=undefined){
+              _pntext += item+"   ";
+              console.log(item);
+            }
+          });
+        document.querySelector(".character-name").innerText = _pntext;
       }
     })
   }

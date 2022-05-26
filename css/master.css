@@ -27,13 +27,12 @@ html,body{
   top: 25%;
   position: relative;
   text-align: center;
-  innerText: "";
   font-size: 32px;
 }
 
 .grid-cell{
-  position: : absolute;
-  width: : 16px;
+  position: absolute;
+  width: 16px;
   height: 16px;
 }
 
@@ -41,7 +40,7 @@ html,body{
   text-align: center;
   margin: auto;
   position: relative;
-  top: 50%;
+  top: 90%;
 }
 
 .button {
@@ -112,4 +111,16 @@ html,body{
   text-align: center;
   width: 350px;
   height: 80px;
+}
+
+.ui {
+  margin: auto;
+  text-align: center;
+  font-size: 32px;
+}
+
+.countdown {
+  margin: auto;
+  top: 10%;
+  position: relative;
 }
