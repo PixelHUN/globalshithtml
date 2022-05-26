@@ -12,6 +12,7 @@ function randomFromArray(array)
   let playerNames = [];
 
   let countdownFinished = false;
+  let playing = false;
 
   let playerNum = 0;
 
@@ -52,25 +53,45 @@ function randomFromArray(array)
     }, 1000);
   }
 
-  function waitForCountdown()
+  function waitForCountdown(type)
   {
     if(countdownFinished === false) {
       window.setTimeout(waitForCountdown, 100); /* this checks the flag every 100 milliseconds*/
     } else {
       /* do something*/
-      game();
+      switch (type) {
+        case "game":
+          playing = true;
+          game();
+          break;
+        case "endgame":
+          playing = false;
+          break;
+      }
+      countdownFinished = false;
+      return;
     }
   }
 
   function startGame()
   {
-    countdown(20);
-    waitForCountdown();
+    countdown(5);
+    waitForCountdown("game");
   }
 
   function game()
   {
-    document.querySelector(".countdown").innerText = "Játék is happening!";
+    countdown(60);
+    waitForCountdown("endgame");
+    while(playing)
+    {
+      if(players[playerId].host === true)
+      {
+        document.querySelector(".countdown").innerText = "Játék is happening!";
+        document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
+      }
+    }
+    initGame();
   }
 
   function EnterName()
