@@ -12,7 +12,8 @@ html,body{
   align-items: center;
   justify-content: center;
   max-width:100%;
-  overflow-x:hidden;
+  overflow-x: hidden;
+  overflow-wrap: break-word;
 }
 
 .game-container {
@@ -123,4 +124,24 @@ html,body{
   margin: auto;
   top: 10%;
   position: relative;
+}
+
+.playerinfo {
+  margin: auto;
+  width: 450px;
+  height: 400px;
+}
+.playerchoices {
+  margin: auto;
+  width: 450px;
+  height: 400px;
+}
+
+.nongameplay {
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  width: 800px;
+  height: 800px;
+  overflow: inherit;
 }

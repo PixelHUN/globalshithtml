@@ -7,12 +7,14 @@ function randomFromArray(array)
   let playerId;
   let playerRef;
   let world;
+  let worldContainer = {};
   let players = {};
   let playerElements = {};
   let playerNames = [];
 
   let countdownFinished = false;
   let playing = false;
+  let waitType;
 
   let playerNum = 0;
 
@@ -53,45 +55,65 @@ function randomFromArray(array)
     }, 1000);
   }
 
-  function waitForCountdown(type)
+  function waitForCountdown()
   {
+    console.log(countdownFinished);
     if(countdownFinished === false) {
+      console.log("várok");
       window.setTimeout(waitForCountdown, 100); /* this checks the flag every 100 milliseconds*/
     } else {
       /* do something*/
-      switch (type) {
+      switch (waitType) {
         case "game":
           playing = true;
+          worldContainer.playing = playing;
+          world.set(worldContainer);
           game();
           break;
         case "endgame":
           playing = false;
+          worldContainer.playing = playing;
+          world.set(worldContainer);
+          if(players[playerId].host === true)
+          {
+            var _pntext = "";
+            playerNames.forEach((item) => {
+              if(item!=undefined){
+                _pntext += item+"   ";
+                console.log(item);
+              }
+            });
+            document.querySelector(".character-name").innerText = _pntext;
+          }
           break;
       }
       countdownFinished = false;
-      return;
+      console.log("done? "+countdownFinished);
     }
   }
 
   function startGame()
   {
     countdown(5);
-    waitForCountdown("game");
+    waitType="game";
+    waitForCountdown();
   }
 
   function game()
   {
-    countdown(60);
-    waitForCountdown("endgame");
-    while(playing)
+    if(players[playerId].host === true)
     {
-      if(players[playerId].host === true)
-      {
-        document.querySelector(".countdown").innerText = "Játék is happening!";
-        document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
-      }
+      countdown(60);
+      waitType="endgame";
+      countdownFinished = false;
+      waitForCountdown();
+      document.querySelector(".countdown").innerText = "Játék is happening!";
+      document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
     }
-    initGame();
+    else {
+      document.getElementById("clientui").style.display = "";
+      document.getElementById("nongameplay").style.display = "none";
+    }
   }
 
   function EnterName()
@@ -131,6 +153,8 @@ function randomFromArray(array)
         // N.America, S. America, Europe, Africa, Asia, Australia
         world.set({
           year: 2022,
+          playing: false,
+          showinfo: false,
           NAmerica: {
             CO: 0,
             Temperature: 0,
@@ -186,101 +210,128 @@ function randomFromArray(array)
     const allPlayersRef = firebase.database().ref(`players`);
     const worldRef = firebase.database().ref(`world`);
 
+    worldRef.on("value", (snapshot) => {
+      // világ változás
+      worldContainer = snapshot.val() || {};
+
+      // ha játékállapot változás történik kliens számára
+      if(playing != worldContainer.playing && !players[playerId].host)
+      {
+        playing = worldContainer.playing;
+        if(playing) {
+          game();
+        }
+        else{
+          document.getElementById("clientui").style.display = "none";
+          document.getElementById("nongameplay").style.display = "";
+        }
+      }
+    })
+
     allPlayersRef.on("value", (snapshot) => {
       // érték változás
-      players = snapshot.val() || {};
-      playerNum = snapshot.numChildren();
-      console.log("There are "+snapshot.numChildren()+" players");
-      if(snapshot.numChildren()===1)
+      if(!playing)
       {
-        players[playerId].host = true;
-        playerRef.set(players[playerId]);
-        document.querySelector(".character-name").innerText = "";
-        /*var lobby = new Audio('./audio/lobby.mp3');
-        lobby.loop = true;
-        lobby.play();*/
-      }
-
-      if(players[playerId].host === true)
-      {
-        document.getElementById("button-host").style.display = "";
-        document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
-      }
-      else {
-        document.getElementById("button-host").style.display = "none";
-      }
-
-      if(players[playerId].host === true)
-      {
-        const index = playerNames.indexOf(snapshot.val().uname);
-        if (index > -1) {
-          playerNames.splice(index, 1);
-        }
-        var _pntext = "";
-          playerNames.forEach((item) => {
-            if(item!=undefined){
-              _pntext += item+", ";
-              console.log(item);
-            }
-          });
-          document.querySelector(".character-name").innerText = _pntext;
-
-        const changedPlayer = snapshot.val();
-        if(changedPlayer.host != true)
+        players = snapshot.val() || {};
+        playerNum = snapshot.numChildren();
+        console.log("There are "+snapshot.numChildren()+" players");
+        if(snapshot.numChildren()===1)
         {
-          playerNames.push(changedPlayer.uname);
+          players[playerId].host = true;
+          playerRef.set(players[playerId]);
+          document.querySelector(".character-name").innerText = "";
+          /*var lobby = new Audio('./audio/lobby.mp3');
+          lobby.loop = true;
+          lobby.play();*/
+        }
+
+        if(players[playerId].host === true)
+        {
+          document.getElementById("button-host").style.display = "";
+          document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
+        }
+        else {
+          document.getElementById("button-host").style.display = "none";
+        }
+
+        if(players[playerId].host === true)
+        {
+          const index = playerNames.indexOf(snapshot.val().uname);
+          if (index > -1) {
+            playerNames.splice(index, 1);
+          }
           var _pntext = "";
-          playerNames.forEach((item) => {
-            if(item!=undefined){
-              _pntext += item+"   ";
-              console.log(item);
-            }
-          });
-          document.querySelector(".character-name").innerText = _pntext;
+            playerNames.forEach((item) => {
+              if(item!=undefined){
+                _pntext += item+", ";
+                console.log(item);
+              }
+            });
+            document.querySelector(".character-name").innerText = _pntext;
+
+          const changedPlayer = snapshot.val();
+          if(changedPlayer.host != true)
+          {
+            playerNames.push(changedPlayer.uname);
+            var _pntext = "";
+            playerNames.forEach((item) => {
+              if(item!=undefined){
+                _pntext += item+"   ";
+                console.log(item);
+              }
+            });
+            document.querySelector(".character-name").innerText = _pntext;
+          }
         }
       }
     })
 
     allPlayersRef.on("child_added", (snapshot) => {
       // számomra új csomópontok
-      if(players[playerId].host===true)
+      if(!playing)
       {
-        var enter = new Audio('./audio/enter.mp3');
-        enter.play();
-        const addedPlayer = snapshot.val();
-        if(addedPlayer.host != 1)
+        if(players[playerId].host===true)
         {
-          playerNames.push(addedPlayer.uname);
+          var enter = new Audio('./audio/enter.mp3');
+          enter.play();
+          const addedPlayer = snapshot.val();
+          if(addedPlayer.host != 1)
+          {
+            playerNames.push(addedPlayer.uname);
 
-          var _pntext = "";
-          playerNames.forEach((item) => {
-            if(item!=undefined){
-              _pntext += item+"   ";
-              console.log(item);
-            }
-          });
-          document.querySelector(".character-name").innerText = _pntext;
+            var _pntext = "";
+            playerNames.forEach((item) => {
+              if(item!=undefined){
+                _pntext += item+"   ";
+                console.log(item);
+              }
+            });
+            document.querySelector(".character-name").innerText = _pntext;
+          }
         }
       }
     })
 
     allPlayersRef.on("child_removed", (snapshot) => {
       // csomópont eltünt :c
-      if(players[playerId].host===true)
+      if(!playing)
       {
-        const index = playerNames.indexOf(snapshot.val().uname);
-        if (index > -1) {
-          playerNames.splice(index, 1);
-        }
+        if(players[playerId].host===true)
+        {
+          const index = playerNames.indexOf(snapshot.val().uname);
+          if (index > -1) {
+            playerNames.splice(index, 1);
+          }
 
-        var _pntext = "";
-          playerNames.forEach((item) => {
-            if(item!=undefined){
-              _pntext += item+"   ";
-              console.log(item);
-            }
-          });
-        document.querySelector(".character-name").innerText = _pntext;
+          var _pntext = "";
+            playerNames.forEach((item) => {
+              if(item!=undefined){
+                _pntext += item+"   ";
+                console.log(item);
+              }
+            });
+          document.querySelector(".character-name").innerText = _pntext;
+        }
       }
     })
   }
