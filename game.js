@@ -1,3 +1,30 @@
+const choices = [
+  {
+    text: "Happy vagy Pénz?",
+    aText: "Happy",
+    bText: "Pénz",
+    aOption: {
+      CO: 0,
+      Temperature: 0,
+      Happyness: 1,
+      Wealthyness: 0
+    },
+    bOption: {
+      CO: 0,
+      Temperature: 0,
+      Happyness: 0,
+      Wealthyness: 1
+    }
+  }
+]
+
+const profiles = [
+  {
+    name: "Hetzmann Hont Bálint",
+    money: 5,
+    continent: "Europe"
+  }
+]
 function randomFromArray(array)
 {
   return array[Math.floor(Math.random() * array.length)];
@@ -23,8 +50,102 @@ function randomFromArray(array)
   const gameContainer = document.querySelector(".game-container");
 
   let username = "";
+
+  let curChoice;
+
+  // gombok
   document.getElementById("name-button").onclick = function() {EnterName()};
   document.getElementById("button-host").onclick = function() {startGame()};
+
+  document.getElementById("a-button").onclick = function() {choiceButton(false)};
+  document.getElementById("b-button").onclick = function() {choiceButton(true)};
+
+  function getContinentFromProfile(_profile)
+  {
+    switch(_world, _profile.continent)
+    {
+      case "NAmerica":
+        return _world.NAmerica;
+        break;
+      case "SAmerica":
+        return _world.SAmerica;
+        break;
+      case "Europe":
+        return _world.Europe;
+        break;
+      case "Africa":
+        return _world.Africa;
+        break;
+      case "Australia":
+        return _world.Australia;
+        break;
+      case "Asia":
+        return _world.Asia;
+        break;
+    }
+  }
+
+  function choiceButton(bButton)
+  {
+    var _world = {
+      NAmerica: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      SAmerica: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Europe: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Asia: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Africa: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Australia: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      }
+    }
+
+    if(bButton)
+    {
+      getContinentFromProfile(_world, players[playerId].profile).CO += curChoice.aOption.CO;
+      getContinentFromProfile(_world, players[playerId].profile).Happyness += curChoice.aOption.Happyness;
+      getContinentFromProfile(_world, players[playerId].profile).Temperature += curChoice.aOption.Temperature;
+      getContinentFromProfile(_world, players[playerId].profile).Wealthyness += curChoice.aOption.Wealthyness;
+    }
+    else
+    {
+      getContinentFromProfile(_world, players[playerId].profile).CO += curChoice.bOption.CO;
+      getContinentFromProfile(_world, players[playerId].profile).Happyness += curChoice.bOption.Happyness;
+      getContinentFromProfile(_world, players[playerId].profile).Temperature += curChoice.bOption.Temperature;
+      getContinentFromProfile(_world, players[playerId].profile).Wealthyness += curChoice.bOption.Wealthyness;
+    }
+    SendToBuffer(_world);
+    if(playing)
+    {
+      showChoice();
+    }
+  }
 
   function countdown(timeleft = 10)
   {
@@ -109,6 +230,7 @@ function randomFromArray(array)
     waitForCountdown();
   }
 
+  // --játék--
   function game()
   {
     if(players[playerId].host === true)
@@ -125,9 +247,21 @@ function randomFromArray(array)
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
+
+      showChoice();
     }
   }
 
+  function showChoice()
+  {
+    curChoice = randomFromArray(choices);
+
+    document.getElementById("question").innerText = curChoice.text;
+    document.getElementById("a-button").innerText = curChoice.aText;
+    document.getElementById("b-button").innerText = curChoice.bText;
+  }
+
+  // szerver buffer
   function SendToBuffer(_world){
     packetid += 1;
     var packet = firebase.database().ref(`buffer/${playerId}_${packetid}`);
@@ -135,24 +269,112 @@ function randomFromArray(array)
     packet.set(_world);
   }
 
-  function ReadBuffer(){
+  // lista szortírozás?
+  function sortListHappyness(ul){
+    var new_ul = ul.cloneNode(false);
 
-  }
-
-  function addToWorld(data){
-    var _CO = worldContainer.CO + data.CO;
-    var _Temper = worldContainer.Temperature + data.Temperature;
-    var _Happy = worldContainer.Happyness + data.Happyness;
-    var _Wealth = worldContainer.Wealthyness + data.Wealthyness;
-    var modified_data = {
-        CO: _CO,
-        Temperature: _Temper,
-        Happyness: _Happy,
-        Wealthyness: _Wealth
+    // Add all lis to an array
+    var lis = [];
+    for(var i = ul.childNodes.length; i--;){
+        if(ul.childNodes[i].nodeName === 'LI')
+            lis.push(ul.childNodes[i]);
     }
-    return modified_data;
+
+    // Sort the lis in descending order
+    var numlis = [worldContainer.NAmerica.Happyness,
+                  worldContainer.SAmerica.Happyness,
+                  worldContainer.Europe.Happyness,
+                  worldContainer.Africa.Happyness,
+                  worldContainer.Australia.Happyness,
+                  worldContainer.Asia.Happyness];
+    numlis.sort(function(a, b){
+       return parseInt(b.childNodes[0].data , 10) -
+              parseInt(a.childNodes[0].data , 10);
+    });
+
+    numlis.forEach((item,i) => {
+      switch(item)
+      {
+        case worldContainer.NAmerica.Happyness:
+          lis[i] = "É. Amerika";
+          break;
+        case worldContainer.SAmerica.Happyness:
+          lis[i] = "D. Amerika";
+          break;
+        case worldContainer.Europe.Happyness:
+          lis[i] = "Európa";
+          break;
+        case worldContainer.Africa.Happyness:
+          lis[i] = "Afrika";
+          break;
+        case worldContainer.Australia.Happyness:
+          lis[i] = "Ausztrália";
+          break;
+        case worldContainer.Asia.Happyness:
+          lis[i] = "Ázsia";
+          break;
+      }
+    })
+
+    // Add them into the ul in order
+    for(var i = 0; i < lis.length; i++)
+        new_ul.appendChild(lis[i]);
+    ul.parentNode.replaceChild(new_ul, ul);
   }
 
+  function sortListWealthyness(ul){
+    var new_ul = ul.cloneNode(false);
+
+    // Add all lis to an array
+    var lis = [];
+    for(var i = ul.childNodes.length; i--;){
+        if(ul.childNodes[i].nodeName === 'LI')
+            lis.push(ul.childNodes[i]);
+    }
+
+    // Sort the lis in descending order
+    var numlis = [worldContainer.NAmerica.Wealthyness,
+                  worldContainer.SAmerica.Wealthyness,
+                  worldContainer.Europe.Wealthyness,
+                  worldContainer.Africa.Wealthyness,
+                  worldContainer.Australia.Wealthyness,
+                  worldContainer.Asia.Wealthyness];
+    numlis.sort(function(a, b){
+       return parseInt(b.childNodes[0].data , 10) -
+              parseInt(a.childNodes[0].data , 10);
+    });
+
+    numlis.forEach((item,i) => {
+      switch(item)
+      {
+        case worldContainer.NAmerica.Wealthyness:
+          lis[i] = "É. Amerika";
+          break;
+        case worldContainer.SAmerica.Wealthyness:
+          lis[i] = "D. Amerika";
+          break;
+        case worldContainer.Europe.Wealthyness:
+          lis[i] = "Európa";
+          break;
+        case worldContainer.Africa.Wealthyness:
+          lis[i] = "Afrika";
+          break;
+        case worldContainer.Australia.Wealthyness:
+          lis[i] = "Ausztrália";
+          break;
+        case worldContainer.Asia.Wealthyness:
+          lis[i] = "Ázsia";
+          break;
+      }
+    })
+
+    // Add them into the ul in order
+    for(var i = 0; i < lis.length; i++)
+        new_ul.appendChild(lis[i]);
+    ul.parentNode.replaceChild(new_ul, ul);
+  }
+
+  // név megadás
   function EnterName()
   {
     if(document.getElementById("nameinput").value === "")
@@ -184,50 +406,7 @@ function randomFromArray(array)
           id: playerId,
           host: false,
           uname: username,
-          profile: "hetzmann-hont",
-          money: 1
-        })
-        // N.America, S. America, Europe, Africa, Asia, Australia
-        world.set({
-          year: 2022,
-          playing: false,
-          showinfo: false,
-          NAmerica: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          },
-          SAmerica: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          },
-          Europe: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          },
-          Asia: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          },
-          Africa: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          },
-          Australia: {
-            CO: 0,
-            Temperature: 0,
-            Happyness: 0,
-            Wealthyness: 0
-          }
+          profile: profiles[0]
         })
 
         playerRef.onDisconnect().remove();
@@ -244,6 +423,53 @@ function randomFromArray(array)
   }
 
   function initGame(){
+    if(!playing)
+    {
+      // N.America, S. America, Europe, Africa, Asia, Australia
+      world.set({
+        profiles: profiles,
+        year: 2022,
+        playing: false,
+        showinfo: false,
+        NAmerica: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        },
+        SAmerica: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        },
+        Europe: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        },
+        Asia: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        },
+        Africa: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        },
+        Australia: {
+          CO: 0,
+          Temperature: 0,
+          Happyness: 0,
+          Wealthyness: 0
+        }
+      })
+    }
+
     const allPlayersRef = firebase.database().ref(`players`);
     const worldRef = firebase.database().ref(`world`);
 
@@ -263,6 +489,11 @@ function randomFromArray(array)
           document.getElementById("nongameplay").style.display = "";
           document.querySelector(".character-name").style.display = "";
         }
+      }
+      else if(players[playerId].host)
+      {
+        sortListHappyness(document.getElementById("happyness"));
+        sortListWealthyness(document.getElementById("wealthyness"));
       }
     })
 
@@ -368,4 +599,17 @@ function randomFromArray(array)
     })
   }
 
+  function addToWorld(data){
+    var _CO = worldContainer.CO + data.CO;
+    var _Temper = worldContainer.Temperature + data.Temperature;
+    var _Happy = worldContainer.Happyness + data.Happyness;
+    var _Wealth = worldContainer.Wealthyness + data.Wealthyness;
+    var modified_data = {
+        CO: _CO,
+        Temperature: _Temper,
+        Happyness: _Happy,
+        Wealthyness: _Wealth
+    }
+    return modified_data;
+  }
 })();
