@@ -9,7 +9,14 @@
     </style>
   </head>
   <body>
-    <div class="bg" style="display: none"></div>
+    <div class="bg" style="display: none">
+      <img id="na" src="./css/images/world_namerica.png" style="position: absolute; opacity: 0;">
+      <img id="sa" src="./css/images/world_samerica.png" style="position: absolute; opacity: 0;">
+      <img id="eu" src="./css/images/world_europe.png" style="position: absolute; opacity: 0;">
+      <img id="af" src="./css/images/world_africa.png" style="position: absolute; opacity: 0;">
+      <img if="au" src="./css/images/world_australia.png" style="position: absolute; opacity: 0;">
+      <img if="as" src="./css/images/world_asia.png" style="position: absolute; opacity: 0;">
+    </div>
     <div class="gamedata" style="display: none">
       <ul id="happyness" style="width: fit-content; position: absolute; left: 0;">
         <div style="font-size: 20px;">Átlagos Boldogság</div>
@@ -31,8 +38,7 @@
       </ul>
     </div>
     <div id="clientui" style="display: none">
-      <div class="playerinfo">
-      </div>
+      <div class="playerinfo"></div>
       <div class="playerchoices">
         <div class="question" id="question">A vagy B?</div>
         <div style="margin: auto; width: fit-content; position: relative;">

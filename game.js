@@ -3,6 +3,7 @@ const choices = [
     text: "Happy vagy Pénz?",
     aText: "Happy",
     bText: "Pénz",
+    minBudget: 0,
     aOption: {
       CO: 0,
       Temperature: 0,
@@ -20,9 +21,15 @@ const choices = [
 
 const profiles = [
   {
-    name: "Hetzmann Hont Bálint",
-    description: "Diák, ",
-    money: 5,
+    name: "Mucsi Tamás Gábor",
+    description: "Lakcím: Európa\nLeírás: 34 éves, politikus. Erősen jobb oldali. Onnan próbál pénzt szerezni ahonnan csak tud. Jelenleg egy bírósági eljárás folyik elene.",
+    budget: 20,
+    continent: "Europe"
+  },
+  {
+    name: "Sévérine Anatole",
+    description: "Lakcím: Európa\nLeírás: 78 éves, nyugdíjas. Könyveket írt és fordított, emiatt rengeteg könyvet el is olvasott. Rengeteg tudásra tett szert eddigi élete alatt.",
+    budget: 20,
     continent: "Europe"
   }
 ]
@@ -230,6 +237,14 @@ let players = {};
 
   function startGame()
   {
+    players.forEach((item, i) => {
+      item.profile = worldContainer.profiles[i];
+      worldContainer.profiles.splice(i,1);
+
+      var setPlayer = firebase.database().ref('players/${item.uid}');
+
+      setPlayer.set(item);
+    })
     document.getElementById("button-host").style.display = "none";
     countdown(5);
     waitType="game";
@@ -245,13 +260,19 @@ let players = {};
       countdown(60);
       waitType="endgame";
       countdownFinished = false;
+
       waitForCountdown();
+
+      //worldContainer.showinfo = true;
+      worldRef.set(worldContainer);
+
       document.querySelector(".countdown").innerText = "START!";
       document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
       document.getElementById("button-host").style.display = "none";
       document.querySelector(".gamedata").style.display = "";
     }
     else {
+      document.querySelector(.playerinfo).innerText = player[playerId].profile.name+"\n"+player[playerId].profile.description;
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
@@ -265,9 +286,15 @@ let players = {};
   {
     curChoice = randomFromArray(choices);
 
-    document.getElementById("question").innerText = curChoice.text;
-    document.getElementById("a-button").innerText = curChoice.aText;
-    document.getElementById("b-button").innerText = curChoice.bText;
+    if(curChoice.minBudget <= players[playerId].profile.budget)
+    {
+      document.getElementById("question").innerText = curChoice.text;
+      document.getElementById("a-button").innerText = curChoice.aText;
+      document.getElementById("b-button").innerText = curChoice.bText;
+    } else
+    {
+      showChoice();
+    }
   }
 
   // szerver buffer
@@ -527,6 +554,13 @@ let players = {};
       {
         sortListHappyness(document.getElementById("happyness"));
         sortListWealthyness(document.getElementById("wealthyness"));
+
+        document.getElementById("na").style.opacity = worldContainer.NAmerica.CO/100;
+        document.getElementById("sa").style.opacity = worldContainer.SAmerica.CO/100;
+        document.getElementById("eu").style.opacity = worldContainer.Europe.CO/100;
+        document.getElementById("af").style.opacity = worldContainer.Africa.CO/100;
+        document.getElementById("au").style.opacity = worldContainer.Australia.CO/100;
+        document.getElementById("as").style.opacity = worldContainer.Asia.CO/100;
       }
     })
 
