@@ -237,14 +237,14 @@ let players = {};
 
   function startGame()
   {
-    players.forEach((item, i) => {
-      item.profile = worldContainer.profiles[i];
+    for (var i = 0; i < players.length; i++) {
+      players[i].profile = worldContainer.profiles[i];
       worldContainer.profiles.splice(i,1);
 
       var setPlayer = firebase.database().ref('players/${item.uid}');
-
       setPlayer.set(item);
-    })
+      world.set(worldContainer);
+    }
     document.getElementById("button-host").style.display = "none";
     countdown(5);
     waitType="game";
@@ -264,7 +264,7 @@ let players = {};
       waitForCountdown();
 
       //worldContainer.showinfo = true;
-      worldRef.set(worldContainer);
+      //world.set(worldContainer);
 
       document.querySelector(".countdown").innerText = "START!";
       document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
@@ -272,7 +272,7 @@ let players = {};
       document.querySelector(".gamedata").style.display = "";
     }
     else {
-      document.querySelector(".playerinfo").innerText = player[playerId].profile.name+"\n"+player[playerId].profile.description;
+      document.querySelector(".playerinfo").innerText = players[playerId].profile.name+"\n"+players[playerId].profile.description;
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
