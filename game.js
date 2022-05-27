@@ -74,6 +74,9 @@ function randomFromArray(array)
           playing = false;
           worldContainer.playing = playing;
           world.set(worldContainer);
+          document.getElementById("button-host").style.display = "";
+          document.querySelector(".countdown").style.fontSize = "32px";
+          document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(players[playerId].host === true)
           {
             var _pntext = "";
@@ -109,11 +112,17 @@ function randomFromArray(array)
       waitForCountdown();
       document.querySelector(".countdown").innerText = "Játék is happening!";
       document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
+        document.getElementById("button-host").style.display = "none";
     }
     else {
       document.getElementById("clientui").style.display = "";
       document.getElementById("nongameplay").style.display = "none";
     }
+  }
+
+  function SendToBuffer(){
+    packetid = Math.random()*100000;
+    packet = firebase.database().ref(`buffer/${playerId}_${packetid}`)
   }
 
   function EnterName()
