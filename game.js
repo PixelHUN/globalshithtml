@@ -193,9 +193,9 @@ let players = {};
 
   function waitForCountdown()
   {
-    console.log(countdownFinished);
+    //console.log(countdownFinished);
     if(countdownFinished === false) {
-      console.log("várok");
+      //console.log("várok");
       window.setTimeout(waitForCountdown, 100); /* this checks the flag every 100 milliseconds*/
     } else {
       /* do something*/
@@ -244,6 +244,7 @@ let players = {};
       worldContainer.profiles.splice(i,1);
 
       var setPlayer = firebase.database().ref('players/${playerUIDs[i]}');
+      console.log("set "+playerUIDs[i]+" id's profile to: "+"players[playerUIDs[i]].profile");
       setPlayer.set(players[playerUIDs[i]]);
       world.set(worldContainer);
     }
@@ -568,6 +569,7 @@ let players = {};
 
     allPlayersRef.on("value", (snapshot) => {
       // érték változás
+      console.log("value change!");
       players = snapshot.val() || {};
       if(!playing)
       {
