@@ -568,9 +568,9 @@ let players = {};
 
     allPlayersRef.on("value", (snapshot) => {
       // érték változás
+      players = snapshot.val() || {};
       if(!playing)
       {
-        players = snapshot.val() || {};
         playerNum = snapshot.numChildren();
         console.log("There are "+snapshot.numChildren()+" players");
         if(snapshot.numChildren()===1)
