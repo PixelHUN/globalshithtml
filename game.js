@@ -30,12 +30,14 @@ function randomFromArray(array)
   return array[Math.floor(Math.random() * array.length)];
 }
 
+let players = {};
+
 (function(){
+  let isHost = false;
   let playerId;
   let playerRef;
   let world;
   let worldContainer = {};
-  let players = {};
   let playerElements = {};
   let playerNames = [];
 
@@ -60,9 +62,9 @@ function randomFromArray(array)
   document.getElementById("a-button").onclick = function() {choiceButton(false)};
   document.getElementById("b-button").onclick = function() {choiceButton(true)};
 
-  function getContinentFromProfile(_profile)
+  function getContinentFromProfile(_world, _profile)
   {
-    switch(_world, _profile.continent)
+    switch(_profile.continent)
     {
       case "NAmerica":
         return _world.NAmerica;
@@ -200,7 +202,7 @@ function randomFromArray(array)
           document.getElementById("button-host").style.display = "";
           document.querySelector(".countdown").style.fontSize = "32px";
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
-          if(players[playerId].host === true)
+          if(isHost === true)
           {
             writeNames();
           }
@@ -233,7 +235,7 @@ function randomFromArray(array)
   // --játék--
   function game()
   {
-    if(players[playerId].host === true)
+    if(isHost === true)
     {
       countdown(60);
       waitType="endgame";
@@ -241,7 +243,7 @@ function randomFromArray(array)
       waitForCountdown();
       document.querySelector(".countdown").innerText = "Játék is happening!";
       document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
-        document.getElementById("button-host").style.display = "none";
+      document.getElementById("button-host").style.display = "none";
     }
     else {
       document.getElementById("clientui").style.display = "";
@@ -288,30 +290,29 @@ function randomFromArray(array)
                   worldContainer.Australia.Happyness,
                   worldContainer.Asia.Happyness];
     numlis.sort(function(a, b){
-       return parseInt(b.childNodes[0].data , 10) -
-              parseInt(a.childNodes[0].data , 10);
+       return b - a;
     });
 
     numlis.forEach((item,i) => {
       switch(item)
       {
         case worldContainer.NAmerica.Happyness:
-          lis[i] = "É. Amerika";
+          lis[i].nodeValue = "É. Amerika";
           break;
         case worldContainer.SAmerica.Happyness:
-          lis[i] = "D. Amerika";
+          lis[i].nodeValue = "D. Amerika";
           break;
         case worldContainer.Europe.Happyness:
-          lis[i] = "Európa";
+          lis[i].nodeValue = "Európa";
           break;
         case worldContainer.Africa.Happyness:
-          lis[i] = "Afrika";
+          lis[i].nodeValue = "Afrika";
           break;
         case worldContainer.Australia.Happyness:
-          lis[i] = "Ausztrália";
+          lis[i].nodeValue = "Ausztrália";
           break;
         case worldContainer.Asia.Happyness:
-          lis[i] = "Ázsia";
+          lis[i].nodeValue = "Ázsia";
           break;
       }
     })
@@ -478,7 +479,7 @@ function randomFromArray(array)
       worldContainer = snapshot.val() || {};
 
       // ha játékállapot változás történik kliens számára
-      if(playing != worldContainer.playing && !players[playerId].host)
+      if(playing != worldContainer.playing && !isHost)
       {
         playing = worldContainer.playing;
         if(playing) {
@@ -490,7 +491,7 @@ function randomFromArray(array)
           document.querySelector(".character-name").style.display = "";
         }
       }
-      else if(players[playerId].host)
+      if(isHost)
       {
         sortListHappyness(document.getElementById("happyness"));
         sortListWealthyness(document.getElementById("wealthyness"));
@@ -516,14 +517,18 @@ function randomFromArray(array)
 
         if(players[playerId].host === true)
         {
+          isHost = true;
           document.getElementById("button-host").style.display = "";
           document.querySelector(".bg").style.display = "";
+          document.querySelector(".gamedata").style.display = "";
 
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
         }
         else {
+          isHost = false;
           document.getElementById("button-host").style.display = "none";
           document.querySelector(".bg").style.display = "none";
+          document.querySelector(".gamedata").style.display = "none";
         }
 
         if(players[playerId].host === true)
@@ -548,7 +553,9 @@ function randomFromArray(array)
       // számomra új csomópontok
       if(!playing)
       {
-        if(players[playerId].host===true)
+        console.log(players);
+        console.log(playerId);
+        if(isHost===true)
         {
           var enter = new Audio('./audio/enter.mp3');
           enter.play();
@@ -567,7 +574,7 @@ function randomFromArray(array)
       // csomópont eltünt :c
       if(!playing)
       {
-        if(players[playerId].host===true)
+        if(isHost===true)
         {
           const index = playerNames.indexOf(snapshot.val().uname);
           if (index > -1) {
@@ -583,15 +590,15 @@ function randomFromArray(array)
 
     // buffer feltöltődés
     allPacketsRef.on("child_added", (snapshot) => {
-        if(host && playing)
+        if(isHost && playing)
         {
             var inPacket = snapshot.val();
-            worldContainer.NAmerica = addToWorld(inPacket.NAmerica);
-            worldContainer.SAmerica = addToWorld(inPacket.SAmerica);
-            worldContainer.Europe = addToWorld(inPacket.Europe);
-            worldContainer.Africa = addToWorld(inPacket.Africa);
-            worldContainer.Asia = addToWorld(inPacket.Asia);
-            worldContainer.Australia = addToWorld(inPacket.Australia);
+            worldContainer.NAmerica = addToWorld(inPacket.NAmerica, worldContainer.NAmerica);
+            worldContainer.SAmerica = addToWorld(inPacket.SAmerica, worldContainer.SAmerica);
+            worldContainer.Europe = addToWorld(inPacket.Europe, worldContainer.Europe);
+            worldContainer.Africa = addToWorld(inPacket.Africa, worldContainer.Africa);
+            worldContainer.Asia = addToWorld(inPacket.Asia, worldContainer.Asia);
+            worldContainer.Australia = addToWorld(inPacket.Australia, worldContainer.Australia);
 
             worldRef.set(worldContainer);
             inPacket.remove();
@@ -599,17 +606,19 @@ function randomFromArray(array)
     })
   }
 
-  function addToWorld(data){
-    var _CO = worldContainer.CO + data.CO;
-    var _Temper = worldContainer.Temperature + data.Temperature;
-    var _Happy = worldContainer.Happyness + data.Happyness;
-    var _Wealth = worldContainer.Wealthyness + data.Wealthyness;
+  function addToWorld(data, continent){
+    console.log(worldContainer);
+    var _CO = continent.CO + data.CO;
+    var _Temper = continent.Temperature + data.Temperature;
+    var _Happy = continent.Happyness + data.Happyness;
+    var _Wealth = continent.Wealthyness + data.Wealthyness;
     var modified_data = {
         CO: _CO,
         Temperature: _Temper,
         Happyness: _Happy,
         Wealthyness: _Wealth
     }
+    console.log(modified_data);
     return modified_data;
   }
 })();
