@@ -601,14 +601,14 @@ let players = {};
 
         if(players[playerId].host === true)
         {
-          const index = playerNames.indexOf(snapshot.val().uname);
+          var index = playerNames.indexOf(snapshot.val().uname);
           if (index > -1) {
             playerNames.splice(index, 1);
           }
 
           writeNames();
 
-          const changedPlayer = snapshot.val();
+          var changedPlayer = snapshot.val();
           if(changedPlayer.host != true)
           {
             writeNames();
@@ -645,11 +645,11 @@ let players = {};
       {
         if(isHost===true)
         {
-          const index = playerNames.indexOf(snapshot.val().uname);
+          var index = playerNames.indexOf(snapshot.val().uname);
           if (index > -1) {
             playerNames.splice(index, 1);
           }
-          const index = playerNames.indexOf(snapshot.val().uid);
+          var index = playerNames.indexOf(snapshot.val().uid);
           if (index > -1) {
             playerNames.splice(index, 1);
           }
