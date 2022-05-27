@@ -244,7 +244,7 @@ let players = {};
       worldContainer.profiles.splice(i,1);
 
       var setPlayer = firebase.database().ref('players/${playerUIDs[i]}');
-      setPlayer.set(item);
+      setPlayer.set(players[playerUIDs[i]]);
       world.set(worldContainer);
     }
     document.getElementById("button-host").style.display = "none";
