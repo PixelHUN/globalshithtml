@@ -16,6 +16,8 @@ function randomFromArray(array)
   let playing = false;
   let waitType;
 
+  let packetid = 0;
+
   let playerNum = 0;
 
   const gameContainer = document.querySelector(".game-container");
@@ -79,20 +81,25 @@ function randomFromArray(array)
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(players[playerId].host === true)
           {
-            var _pntext = "";
-            playerNames.forEach((item) => {
-              if(item!=undefined){
-                _pntext += item+"   ";
-                console.log(item);
-              }
-            });
-            document.querySelector(".character-name").innerText = _pntext;
+            writeNames();
           }
           break;
       }
       countdownFinished = false;
       console.log("done? "+countdownFinished);
     }
+  }
+
+  function writeNames()
+  {
+    var _pntext = "";
+    playerNames.forEach((item) => {
+      if(item!=undefined){
+        _pntext += item+", ";
+        console.log(item);
+      }
+    });
+    document.querySelector(".character-name").innerText = _pntext;
   }
 
   function startGame()
@@ -116,13 +123,34 @@ function randomFromArray(array)
     }
     else {
       document.getElementById("clientui").style.display = "";
+      document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
     }
   }
 
-  function SendToBuffer(){
-    packetid = Math.random()*100000;
-    packet = firebase.database().ref(`buffer/${playerId}_${packetid}`)
+  function SendToBuffer(_world){
+    packetid += 1;
+    var packet = firebase.database().ref(`buffer/${playerId}_${packetid}`);
+
+    packet.set(_world);
+  }
+
+  function ReadBuffer(){
+
+  }
+
+  function addToWorld(data){
+    var _CO = worldContainer.CO + data.CO;
+    var _Temper = worldContainer.Temperature + data.Temperature;
+    var _Happy = worldContainer.Happyness + data.Happyness;
+    var _Wealth = worldContainer.Wealthyness + data.Wealthyness;
+    var modified_data = {
+        CO: _CO,
+        Temperature: _Temper,
+        Happyness: _Happy,
+        Wealthyness: _Wealth
+    }
+    return modified_data;
   }
 
   function EnterName()
@@ -233,6 +261,7 @@ function randomFromArray(array)
         else{
           document.getElementById("clientui").style.display = "none";
           document.getElementById("nongameplay").style.display = "";
+          document.querySelector(".character-name").style.display = "";
         }
       }
     })
@@ -272,27 +301,13 @@ function randomFromArray(array)
           if (index > -1) {
             playerNames.splice(index, 1);
           }
-          var _pntext = "";
-            playerNames.forEach((item) => {
-              if(item!=undefined){
-                _pntext += item+", ";
-                console.log(item);
-              }
-            });
-            document.querySelector(".character-name").innerText = _pntext;
+
+          writeNames();
 
           const changedPlayer = snapshot.val();
           if(changedPlayer.host != true)
           {
-            playerNames.push(changedPlayer.uname);
-            var _pntext = "";
-            playerNames.forEach((item) => {
-              if(item!=undefined){
-                _pntext += item+"   ";
-                console.log(item);
-              }
-            });
-            document.querySelector(".character-name").innerText = _pntext;
+            writeNames();
           }
         }
       }
@@ -311,14 +326,7 @@ function randomFromArray(array)
           {
             playerNames.push(addedPlayer.uname);
 
-            var _pntext = "";
-            playerNames.forEach((item) => {
-              if(item!=undefined){
-                _pntext += item+"   ";
-                console.log(item);
-              }
-            });
-            document.querySelector(".character-name").innerText = _pntext;
+            writeNames();
           }
         }
       }
@@ -335,16 +343,28 @@ function randomFromArray(array)
             playerNames.splice(index, 1);
           }
 
-          var _pntext = "";
-            playerNames.forEach((item) => {
-              if(item!=undefined){
-                _pntext += item+"   ";
-                console.log(item);
-              }
-            });
-          document.querySelector(".character-name").innerText = _pntext;
+          writeNames();
         }
       }
+    })
+
+    const allPacketsRef = firebase.database().ref(`buffer`);
+
+    // buffer feltöltődés
+    allPacketsRef.on("child_added", (snapshot) => {
+        if(host && playing)
+        {
+            var inPacket = snapshot.val();
+            worldContainer.NAmerica = addToWorld(inPacket.NAmerica);
+            worldContainer.SAmerica = addToWorld(inPacket.SAmerica);
+            worldContainer.Europe = addToWorld(inPacket.Europe);
+            worldContainer.Africa = addToWorld(inPacket.Africa);
+            worldContainer.Asia = addToWorld(inPacket.Asia);
+            worldContainer.Australia = addToWorld(inPacket.Australia);
+
+            worldRef.set(worldContainer);
+            inPacket.remove();
+        }
     })
   }
 
