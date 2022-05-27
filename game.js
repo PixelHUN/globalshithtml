@@ -239,11 +239,14 @@ let players = {};
 
   function startGame()
   {
-    for (var i = 0; i < players.length; i++) {
+    //console.log(players.length);
+    for (var i = 0; i < playerUIDs.length; i++) {
+      console.log(playerUIDs[i]);
       players[playerUIDs[i]].profile = worldContainer.profiles[i];
       worldContainer.profiles.splice(i,1);
 
-      var setPlayer = firebase.database().ref('players/${playerUIDs[i]}');
+      var _uid = playerUIDs[i];
+      var setPlayer = firebase.database().ref('players/${_uid}');
       console.log("set "+playerUIDs[i]+" id's profile to: "+"players[playerUIDs[i]].profile");
       setPlayer.set(players[playerUIDs[i]]);
       world.set(worldContainer);
@@ -630,13 +633,12 @@ let players = {};
           var enter = new Audio('./audio/enter.mp3');
           enter.play();
           const addedPlayer = snapshot.val();
-          if(addedPlayer.host != 1)
-          {
-            playerNames.push(addedPlayer.uname);
-            playerUIDs.push(addedPlayer.uid);
+          playerNames.push(addedPlayer.uname);
+          playerUIDs.push(addedPlayer.id);
+          console.log(addedPlayer.id);
+          console.log(playerUIDs);
 
-            writeNames();
-          }
+          writeNames();
         }
       }
     })
@@ -651,7 +653,7 @@ let players = {};
           if (index > -1) {
             playerNames.splice(index, 1);
           }
-          var index = playerNames.indexOf(snapshot.val().uid);
+          var index = playerNames.indexOf(snapshot.val().id);
           if (index > -1) {
             playerNames.splice(index, 1);
           }
