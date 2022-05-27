@@ -272,7 +272,7 @@ let players = {};
       document.querySelector(".gamedata").style.display = "";
     }
     else {
-      document.querySelector(.playerinfo).innerText = player[playerId].profile.name+"\n"+player[playerId].profile.description;
+      document.querySelector(".playerinfo").innerText = player[playerId].profile.name+"\n"+player[playerId].profile.description;
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
