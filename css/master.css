@@ -135,8 +135,12 @@ html,body{
   margin: auto;
   text-align: center;
   font-size: 28px;
-  width: 450px;
-  height: 400px;
+  width: 400px;
+  height: 380px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
 }
 .playerchoices {
   margin: auto;

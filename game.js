@@ -64,6 +64,8 @@ let players = {};
 
   let curChoice;
 
+  let playerUIDs = [];
+
   // gombok
   document.getElementById("name-button").onclick = function() {EnterName()};
   document.getElementById("button-host").onclick = function() {startGame()};
@@ -238,10 +240,10 @@ let players = {};
   function startGame()
   {
     for (var i = 0; i < players.length; i++) {
-      players[i].profile = worldContainer.profiles[i];
+      players[playerUIDs[i]].profile = worldContainer.profiles[i];
       worldContainer.profiles.splice(i,1);
 
-      var setPlayer = firebase.database().ref('players/${item.uid}');
+      var setPlayer = firebase.database().ref('players/${playerUIDs[i]}');
       setPlayer.set(item);
       world.set(worldContainer);
     }
@@ -629,6 +631,7 @@ let players = {};
           if(addedPlayer.host != 1)
           {
             playerNames.push(addedPlayer.uname);
+            playerUIDs.push(addedPlayer.uid);
 
             writeNames();
           }
@@ -643,6 +646,10 @@ let players = {};
         if(isHost===true)
         {
           const index = playerNames.indexOf(snapshot.val().uname);
+          if (index > -1) {
+            playerNames.splice(index, 1);
+          }
+          const index = playerNames.indexOf(snapshot.val().uid);
           if (index > -1) {
             playerNames.splice(index, 1);
           }
