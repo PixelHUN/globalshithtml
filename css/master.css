@@ -133,6 +133,8 @@ html,body{
 
 .playerinfo {
   margin: auto;
+  text-align: center;
+  font-size: 28px;
   width: 450px;
   height: 400px;
 }
@@ -153,8 +155,8 @@ html,body{
 
 .bg {
   position: absolute;
-  width: 918px;
-  height: 609px;
+  width: 1318px;
+  height: 650px;
   background-image: url("./images/world.png");
   background-repeat: no-repeat;
   background-size: 100%;
@@ -209,6 +211,7 @@ html,body{
 }
 
 li {
+  font-size: 24px;
   list-style: none;
   background: #d1703c;
   color: #fff;

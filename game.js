@@ -21,6 +21,7 @@ const choices = [
 const profiles = [
   {
     name: "Hetzmann Hont Bálint",
+    description: "Diák, ",
     money: 5,
     continent: "Europe"
   }
@@ -40,6 +41,7 @@ let players = {};
   let worldContainer = {};
   let playerElements = {};
   let playerNames = [];
+  const allPacketsRef = firebase.database().ref(`buffer`);
 
   let countdownFinished = false;
   let playing = false;
@@ -128,7 +130,7 @@ let players = {};
       }
     }
 
-    if(bButton)
+    if(!bButton)
     {
       getContinentFromProfile(_world, players[playerId].profile).CO += curChoice.aOption.CO;
       getContinentFromProfile(_world, players[playerId].profile).Happyness += curChoice.aOption.Happyness;
@@ -161,7 +163,7 @@ let players = {};
         var sec;
         if(timeleft>10)
         {
-          document.querySelector(".countdown").style.fontSize = "32px";
+          document.querySelector(".countdown").style.fontSize = "42px";
           min = Math.floor(timeleft/60);
           sec = timeleft-min*60;
           if(sec<10){
@@ -172,7 +174,7 @@ let players = {};
         }
         else
         {
-          document.querySelector(".countdown").style.fontSize = "42px";
+          document.querySelector(".countdown").style.fontSize = "64px";
           document.querySelector(".countdown").innerText = timeleft;
         }
       }
@@ -200,6 +202,7 @@ let players = {};
           worldContainer.playing = playing;
           world.set(worldContainer);
           document.getElementById("button-host").style.display = "";
+          document.querySelector(".gamedata").style.display = "none";
           document.querySelector(".countdown").style.fontSize = "32px";
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(isHost === true)
@@ -227,6 +230,7 @@ let players = {};
 
   function startGame()
   {
+    document.getElementById("button-host").style.display = "none";
     countdown(5);
     waitType="game";
     waitForCountdown();
@@ -237,18 +241,21 @@ let players = {};
   {
     if(isHost === true)
     {
+      allPacketsRef.remove();
       countdown(60);
       waitType="endgame";
       countdownFinished = false;
       waitForCountdown();
-      document.querySelector(".countdown").innerText = "Játék is happening!";
+      document.querySelector(".countdown").innerText = "START!";
       document.querySelector(".character-name").innerText = "Nézz a készülékedre!";
       document.getElementById("button-host").style.display = "none";
+      document.querySelector(".gamedata").style.display = "";
     }
     else {
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
+      document.querySelector(".gamedata").style.display = "none";
 
       showChoice();
     }
@@ -293,33 +300,48 @@ let players = {};
        return b - a;
     });
 
-    numlis.forEach((item,i) => {
-      switch(item)
+    var _list = [true, true, true, true, true, true];
+
+    for (var i = 0; i < numlis.length; i++) {
+      if(numlis[i]===worldContainer.NAmerica.Happyness && _list[0])
       {
-        case worldContainer.NAmerica.Happyness:
-          lis[i].nodeValue = "É. Amerika";
-          break;
-        case worldContainer.SAmerica.Happyness:
-          lis[i].nodeValue = "D. Amerika";
-          break;
-        case worldContainer.Europe.Happyness:
-          lis[i].nodeValue = "Európa";
-          break;
-        case worldContainer.Africa.Happyness:
-          lis[i].nodeValue = "Afrika";
-          break;
-        case worldContainer.Australia.Happyness:
-          lis[i].nodeValue = "Ausztrália";
-          break;
-        case worldContainer.Asia.Happyness:
-          lis[i].nodeValue = "Ázsia";
-          break;
+        lis[i].innerHTML = "É. Amerika";
+        _list[0] = false;
       }
-    })
+      else if(numlis[i]===worldContainer.SAmerica.Happyness && _list[1])
+      {
+        lis[i].innerHTML = "D. Amerika";
+        _list[1] = false;
+      }
+      else if(numlis[i]===worldContainer.Europe.Happyness && _list[2])
+      {
+        lis[i].innerHTML = "Európa";
+        _list[2] = false;
+      }
+      else if(numlis[i]===worldContainer.Africa.Happyness && _list[3])
+      {
+        lis[i].innerHTML = "Afrika";
+        _list[3] = false;
+      }
+      else if(numlis[i]===worldContainer.Australia.Happyness && _list[4])
+      {
+        lis[i].innerHTML = "Ausztrália";
+        _list[4] = false;
+      }
+      else if(numlis[i]===worldContainer.Asia.Happyness && _list[5])
+      {
+        lis[i].innerHTML = "Ázsia";
+        _list[5] = false;
+      }
+    }
 
     // Add them into the ul in order
     for(var i = 0; i < lis.length; i++)
-        new_ul.appendChild(lis[i]);
+    {
+      //lis[i].innerHTML = numlis[i];
+      new_ul.appendChild(lis[i]);
+    }
+
     ul.parentNode.replaceChild(new_ul, ul);
   }
 
@@ -341,33 +363,43 @@ let players = {};
                   worldContainer.Australia.Wealthyness,
                   worldContainer.Asia.Wealthyness];
     numlis.sort(function(a, b){
-       return parseInt(b.childNodes[0].data , 10) -
-              parseInt(a.childNodes[0].data , 10);
+       return b - a;
     });
 
-    numlis.forEach((item,i) => {
-      switch(item)
+    var _list = [true, true, true, true, true, true];
+
+    for (var i = 0; i < numlis.length; i++) {
+      if(numlis[i]===worldContainer.NAmerica.Wealthyness && _list[0])
       {
-        case worldContainer.NAmerica.Wealthyness:
-          lis[i] = "É. Amerika";
-          break;
-        case worldContainer.SAmerica.Wealthyness:
-          lis[i] = "D. Amerika";
-          break;
-        case worldContainer.Europe.Wealthyness:
-          lis[i] = "Európa";
-          break;
-        case worldContainer.Africa.Wealthyness:
-          lis[i] = "Afrika";
-          break;
-        case worldContainer.Australia.Wealthyness:
-          lis[i] = "Ausztrália";
-          break;
-        case worldContainer.Asia.Wealthyness:
-          lis[i] = "Ázsia";
-          break;
+        lis[i].innerHTML = "É. Amerika";
+        _list[0] = false;
       }
-    })
+      else if(numlis[i]===worldContainer.SAmerica.Wealthyness && _list[1])
+      {
+        lis[i].innerHTML = "D. Amerika";
+        _list[1] = false;
+      }
+      else if(numlis[i]===worldContainer.Europe.Wealthyness && _list[2])
+      {
+        lis[i].innerHTML = "Európa";
+        _list[2] = false;
+      }
+      else if(numlis[i]===worldContainer.Africa.Wealthyness && _list[3])
+      {
+        lis[i].innerHTML = "Afrika";
+        _list[3] = false;
+      }
+      else if(numlis[i]===worldContainer.Australia.Wealthyness && _list[4])
+      {
+        lis[i].innerHTML = "Ausztrália";
+        _list[4] = false;
+      }
+      else if(numlis[i]===worldContainer.Asia.Wealthyness && _list[5])
+      {
+        lis[i].innerHTML = "Ázsia";
+        _list[5] = false;
+      }
+    }
 
     // Add them into the ul in order
     for(var i = 0; i < lis.length; i++)
@@ -435,19 +467,19 @@ let players = {};
         NAmerica: {
           CO: 0,
           Temperature: 0,
-          Happyness: 0,
-          Wealthyness: 0
+          Happyness: 5,
+          Wealthyness: 6
         },
         SAmerica: {
           CO: 0,
           Temperature: 0,
-          Happyness: 0,
-          Wealthyness: 0
+          Happyness: 4,
+          Wealthyness: 3
         },
         Europe: {
           CO: 0,
           Temperature: 0,
-          Happyness: 0,
+          Happyness: 3,
           Wealthyness: 0
         },
         Asia: {
@@ -520,7 +552,7 @@ let players = {};
           isHost = true;
           document.getElementById("button-host").style.display = "";
           document.querySelector(".bg").style.display = "";
-          document.querySelector(".gamedata").style.display = "";
+          //document.querySelector(".gamedata").style.display = "";
 
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
         }
@@ -586,7 +618,7 @@ let players = {};
       }
     })
 
-    const allPacketsRef = firebase.database().ref(`buffer`);
+
 
     // buffer feltöltődés
     allPacketsRef.on("child_added", (snapshot) => {
@@ -601,7 +633,7 @@ let players = {};
             worldContainer.Australia = addToWorld(inPacket.Australia, worldContainer.Australia);
 
             worldRef.set(worldContainer);
-            inPacket.remove();
+            //inPacket.remove();
         }
     })
   }
