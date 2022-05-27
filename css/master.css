@@ -184,7 +184,7 @@ html,body{
   border: none;
   color: white;
   width: 200px;
-  height: 200px;
+  height: auto;
   padding: 15px 32px;
   border-radius: 4px;
   text-align: center;
