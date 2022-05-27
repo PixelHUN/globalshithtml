@@ -248,10 +248,13 @@ function randomFromArray(array)
         if(players[playerId].host === true)
         {
           document.getElementById("button-host").style.display = "";
+          document.querySelector(".bg").style.display = "";
+
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
         }
         else {
           document.getElementById("button-host").style.display = "none";
+          document.querySelector(".bg").style.display = "none";
         }
 
         if(players[playerId].host === true)
