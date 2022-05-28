@@ -1,5 +1,9 @@
 // What if you'd work now?
-const choices = fetch('./choices.json').then(results => results.json());
+let choices;
+fetch("./choices.json")
+.then(res => res.json())
+.then(data => choices = data)
+.then(() => console.log(choices));
 
 const profiles = [
   {
@@ -33,7 +37,7 @@ let players = {};
   const allPacketsRef = firebase.database().ref(`buffer`);
 
   let countdownFinished = false;
-  let playing = false;
+  let playing = 0;
   let waitType;
 
   let packetid = 0;
@@ -56,13 +60,13 @@ let players = {};
   document.getElementById("b-button").onclick = function() {choiceButton(true)};
 
   function initGame(){
-    if(!playing)
+    if(playing === 0)
     {
       // N.America, S. America, Europe, Africa, Asia, Australia
       world.set({
         profiles: profiles,
         year: 2022,
-        playing: false,
+        playing: 0,
         showinfo: false,
         NAmerica: {
           CO: 0,
@@ -114,7 +118,7 @@ let players = {};
       if(playing != worldContainer.playing && !isHost)
       {
         playing = worldContainer.playing;
-        if(playing) {
+        if(playing === 1) {
           game();
         }
         else{
@@ -142,7 +146,7 @@ let players = {};
       console.log("value change!");
       players = snapshot.val() || {};
       console.log(players);
-      if(!playing)
+      if(playing === 0)
       {
         playerNum = snapshot.numChildren();
         console.log("There are "+snapshot.numChildren()+" players");
@@ -193,28 +197,31 @@ let players = {};
 
     allPlayersRef.on("child_added", (snapshot) => {
       // számomra új csomópontok
-      if(!playing)
+      if(playing === 0)
       {
         //console.log(players);
         console.log(playerId);
         if(isHost===true)
         {
-          var enter = new Audio('./audio/enter.mp3');
-          enter.play();
-          const addedPlayer = snapshot.val();
-          playerNames.push(addedPlayer.uname);
-          playerUIDs.push(addedPlayer.id);
-          console.log(addedPlayer.id);
-          console.log(playerUIDs);
+          if(!addedPlayer.host)
+          {
+            var enter = new Audio('./audio/enter.mp3');
+            enter.play();
+            const addedPlayer = snapshot.val();
+            playerNames.push(addedPlayer.uname);
+            playerUIDs.push(addedPlayer.id);
+            console.log(addedPlayer.id);
+            console.log(playerUIDs);
 
-          writeNames();
+            writeNames();
+          }
         }
       }
     })
 
     allPlayersRef.on("child_removed", (snapshot) => {
       // csomópont eltünt :c
-      if(!playing)
+      if(playing === 0)
       {
         if(isHost===true)
         {
@@ -236,7 +243,7 @@ let players = {};
 
     // buffer feltöltődés
     allPacketsRef.on("child_added", (snapshot) => {
-        if(isHost && playing)
+        if(isHost && playing === 1)
         {
             var inPacket = snapshot.val();
             worldContainer.NAmerica = addToWorld(inPacket.NAmerica, worldContainer.NAmerica);
@@ -349,7 +356,7 @@ let players = {};
       getContinentFromProfile(_world, players[playerId].profile).Wealthyness += curChoice.bOption.Wealthyness;
     }
     SendToBuffer(_world);
-    if(playing)
+    if(playing === 1)
     {
       showChoice();
     }
@@ -396,13 +403,13 @@ let players = {};
       /* do something*/
       switch (waitType) {
         case "game":
-          playing = true;
+          playing = 1;
           worldContainer.playing = playing;
           world.set(worldContainer);
           game();
           break;
         case "endgame":
-          playing = false;
+          playing = 0;
           worldContainer.playing = playing;
           world.set(worldContainer);
           document.getElementById("button-host").style.display = "";
@@ -435,11 +442,11 @@ let players = {};
   function startGame()
   {
     //console.log(players.length);
-    playing = true;
+    playing = 1;
     world.set({
       profiles: profiles,
       year: 2022,
-      playing: false,
+      playing: 0,
       showinfo: false,
       NAmerica: {
         CO: 0,
@@ -532,6 +539,7 @@ let players = {};
 
   function showChoice()
   {
+    console.log(choices);
     curChoice = randomFromArray(choices);
 
     if(curChoice.minBudget <= players[playerId].profile.budget)
