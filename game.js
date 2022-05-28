@@ -1,3 +1,4 @@
+// What if you'd work now?
 const choices = fetch('./choices.json').json();
 
 const profiles = [
