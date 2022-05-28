@@ -1,4 +1,4 @@
-const choices = JSON.parse(fetch('./choices.json').then(results => results.json()).then(console.log()));
+const choices = fetch('./choices.json').json();
 
 const profiles = [
   {
