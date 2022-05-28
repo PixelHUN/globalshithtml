@@ -31,7 +31,7 @@ html,body{
   margin: auto;
   position: absolute;
   text-align: center;
-  font-size: 32px;
+  font-size: 40px;
   z-index: 3;
 }
 
@@ -129,6 +129,7 @@ html,body{
   margin: auto;
   top: 10%;
   position: relative;
+  font-size: 40px;
 }
 
 .playerinfo {
@@ -170,7 +171,7 @@ html,body{
 
 .gamedata {
   position: absolute;
-  width: 90vw;
+  width: 95vw;
   height: 80vh;
   z-index: 2;
 }
@@ -215,7 +216,7 @@ html,body{
 }
 
 li {
-  font-size: 24px;
+  font-size: 38px;
   list-style: none;
   background: #d1703c;
   color: #fff;
@@ -224,18 +225,10 @@ li {
   margin: 0;
   padding: 0 0.5em;
   overflow: hidden;
-  width: 10em;
+  width: 6em;
 }
 
 li.show {
   height: 2em;
   margin: 0 0;
-}
-
-.slide-fade li {
-  transition: all 0.4s ease-out;
-  opacity: 0;
-}
-.slide-fade li.show {
-  opacity: 1;
 }

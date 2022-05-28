@@ -7,6 +7,13 @@
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
     </style>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
   </head>
   <body>
     <div class="bg" style="display: none">
@@ -18,22 +25,28 @@
       <img id="as" src="./css/images/world_asia.png" style="position: absolute; opacity: 0;">
     </div>
     <div class="gamedata" style="display: none">
-      <ul id="happyness" style="width: fit-content; position: absolute; left: 0;">
-        <li class="show">É. Amerika</li>
-        <li class="show">D. Amerika</li>
-        <li class="show">Európa</li>
-        <li class="show">Afrika</li>
-        <li class="show">Ausztrália</li>
-        <li class="show">Ázsia</li>
-      </ul>
-      <ul id="wealthyness" style="width: fit-content; position: absolute; right: 0; text-align: right;">
-        <li class="show">É. Amerika</li>
-        <li class="show">D. Amerika</li>
-        <li class="show">Európa</li>
-        <li class="show">Afrika</li>
-        <li class="show">Ausztrália</li>
-        <li class="show">Ázsia</li>
-      </ul>
+      <div style="width: fit-content; position: absolute; left: 0; padding-left: 0px;">
+        <div style="font-size: 28px">Átlagos Jókedv</div>
+        <ul id="happyness" style="padding-left: 0px;">
+          <li class="show">É. Amerika</li>
+          <li class="show">D. Amerika</li>
+          <li class="show">Európa</li>
+          <li class="show">Afrika</li>
+          <li class="show">Ausztrália</li>
+          <li class="show">Ázsia</li>
+        </ul>
+      </div>
+      <div style="width: fit-content; position: absolute; right: 0; text-align: right; padding-left: 0px;">
+        <div style="font-size: 28px">Átlagos Vagyon</div>
+        <ul id="wealthyness" style="padding-left: 0px;">
+          <li class="show">É. Amerika</li>
+          <li class="show">D. Amerika</li>
+          <li class="show">Európa</li>
+          <li class="show">Afrika</li>
+          <li class="show">Ausztrália</li>
+          <li class="show">Ázsia</li>
+        </ul>
+      </div>
     </div>
     <div id="clientui" style="display: none">
       <div class="playerinfo"></div>

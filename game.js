@@ -367,7 +367,7 @@ let players = {};
         var sec;
         if(timeleft>10)
         {
-          document.querySelector(".countdown").style.fontSize = "42px";
+          document.querySelector(".countdown").style.fontSize = "50px";
           min = Math.floor(timeleft/60);
           sec = timeleft-min*60;
           if(sec<10){
@@ -378,7 +378,7 @@ let players = {};
         }
         else
         {
-          document.querySelector(".countdown").style.fontSize = "64px";
+          document.querySelector(".countdown").style.fontSize = "72px";
           document.querySelector(".countdown").innerText = timeleft;
         }
       }
@@ -407,7 +407,7 @@ let players = {};
           world.set(worldContainer);
           document.getElementById("button-host").style.display = "";
           document.querySelector(".gamedata").style.display = "none";
-          document.querySelector(".countdown").style.fontSize = "32px";
+          document.querySelector(".countdown").style.fontSize = "40px";
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(isHost === true)
           {
