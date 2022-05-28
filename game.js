@@ -11,7 +11,7 @@ const choices = [
       Wealthyness: 0
     },
     bOption: {
-      CO: 0,
+      CO: 5,
       Temperature: 0,
       Happyness: 0,
       Wealthyness: 1
@@ -38,7 +38,7 @@ function randomFromArray(array)
   return array[Math.floor(Math.random() * array.length)];
 }
 
-var players = {};
+let players = {};
 
 (function(){
   let isHost = false;
@@ -159,6 +159,7 @@ var players = {};
       // érték változás
       console.log("value change!");
       players = snapshot.val() || {};
+      console.log(players);
       if(!playing)
       {
         playerNum = snapshot.numChildren();
@@ -212,7 +213,7 @@ var players = {};
       // számomra új csomópontok
       if(!playing)
       {
-        console.log(players);
+        //console.log(players);
         console.log(playerId);
         if(isHost===true)
         {
@@ -456,12 +457,14 @@ var players = {};
     for (var i = 0; i < playerUIDs.length; i++) {
       if(playerUIDs[i] != undefined)
       {
+        console.log(i);
         console.log(playerUIDs[i]);
-        players[playerUIDs[i]].profile = worldContainer.profiles[i];
+        console.log(worldContainer.profiles[0]);
+        players[playerUIDs[i]].profile = worldContainer.profiles[0];
         worldContainer.profiles.splice(i,1);
 
-        var setPlayer = firebase.database().ref(`players`);
-        console.log("set "+playerUIDs[i]+" id's profile to: "+"players[playerUIDs[i]].profile");
+        var setPlayer = firebase.database().ref(`players/${playerUIDs[i]}`);
+        console.log("set "+playerUIDs[i]+" id's profile to: "+players[playerUIDs[i]].profile);
         setPlayer.set(players[playerUIDs[i]]);
         world.set(worldContainer);
       }
@@ -651,7 +654,11 @@ var players = {};
 
     // Add them into the ul in order
     for(var i = 0; i < lis.length; i++)
-        new_ul.appendChild(lis[i]);
+    {
+      //lis[i].innerHTML = numlis[i];
+      new_ul.appendChild(lis[i]);
+    }
+
     ul.parentNode.replaceChild(new_ul, ul);
   }
 
