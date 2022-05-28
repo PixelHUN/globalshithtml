@@ -1,23 +1,4 @@
-const choices = [
-  {
-    text: "Happy vagy Pénz?",
-    aText: "Happy",
-    bText: "Pénz",
-    minBudget: 0,
-    aOption: {
-      CO: 0,
-      Temperature: 0,
-      Happyness: 1,
-      Wealthyness: 0
-    },
-    bOption: {
-      CO: 5,
-      Temperature: 0,
-      Happyness: 0,
-      Wealthyness: 1
-    }
-  }
-]
+const choices = JSON.parse(fetch('./choices.json').then(results => results.json()));
 
 const profiles = [
   {
@@ -29,7 +10,7 @@ const profiles = [
   {
     name: "Sévérine Anatole",
     description: "Lakcím: Európa\nLeírás: 78 éves, nyugdíjas. Könyveket írt és fordított, emiatt rengeteg könyvet el is olvasott. Rengeteg tudásra tett szert eddigi élete alatt.",
-    budget: 20,
+    budget: 10,
     continent: "Europe"
   }
 ]
