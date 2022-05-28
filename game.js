@@ -1,5 +1,5 @@
 // What if you'd work now?
-const choices = fetch('./choices.json').json();
+const choices = fetch('./choices.json').then(results => results.json());
 
 const profiles = [
   {
