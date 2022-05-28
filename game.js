@@ -85,19 +85,19 @@ let players = {};
         NAmerica: {
           CO: 0,
           Temperature: 0,
-          Happyness: 5,
-          Wealthyness: 6
+          Happyness: 0,
+          Wealthyness: 0
         },
         SAmerica: {
           CO: 0,
           Temperature: 0,
-          Happyness: 4,
-          Wealthyness: 3
+          Happyness: 0,
+          Wealthyness: 0
         },
         Europe: {
           CO: 0,
           Temperature: 0,
-          Happyness: 3,
+          Happyness: 0,
           Wealthyness: 0
         },
         Asia: {
@@ -146,12 +146,12 @@ let players = {};
         sortListHappyness(document.getElementById("happyness"));
         sortListWealthyness(document.getElementById("wealthyness"));
 
-        document.getElementById("na").style.opacity = worldContainer.NAmerica.CO/100;
-        document.getElementById("sa").style.opacity = worldContainer.SAmerica.CO/100;
-        document.getElementById("eu").style.opacity = worldContainer.Europe.CO/100;
-        document.getElementById("af").style.opacity = worldContainer.Africa.CO/100;
-        document.getElementById("au").style.opacity = worldContainer.Australia.CO/100;
-        document.getElementById("as").style.opacity = worldContainer.Asia.CO/100;
+        document.getElementById("na").style.opacity = worldContainer.NAmerica.CO/500;
+        document.getElementById("sa").style.opacity = worldContainer.SAmerica.CO/500;
+        document.getElementById("eu").style.opacity = worldContainer.Europe.CO/500;
+        document.getElementById("af").style.opacity = worldContainer.Africa.CO/500;
+        document.getElementById("au").style.opacity = worldContainer.Australia.CO/500;
+        document.getElementById("as").style.opacity = worldContainer.Asia.CO/500;
       }
     })
 
@@ -454,6 +454,48 @@ let players = {};
   {
     //console.log(players.length);
     playing = true;
+    world.set({
+      profiles: profiles,
+      year: 2022,
+      playing: false,
+      showinfo: false,
+      NAmerica: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      SAmerica: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Europe: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Asia: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Africa: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      },
+      Australia: {
+        CO: 0,
+        Temperature: 0,
+        Happyness: 0,
+        Wealthyness: 0
+      }
+    })
     for (var i = 0; i < playerUIDs.length; i++) {
       if(playerUIDs[i] != undefined)
       {
