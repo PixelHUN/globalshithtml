@@ -16,6 +16,7 @@
     <meta name="theme-color" content="#ffffff">
   </head>
   <body>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <div class="bg" style="display: none">
       <img id="na" src="./css/images/world_namerica.png" style="position: absolute; opacity: 0;">
       <img id="sa" src="./css/images/world_samerica.png" style="position: absolute; opacity: 0;">
@@ -71,6 +72,10 @@
         <div style="padding: 10px">
           <button class="button" id="name-button" onclick="">Tovább</button>
         </div>
+      </div>
+      <div id="qr" style="display: none; background: rgba(0,0,0,0.25); padding: 10px; border-radius: 6px; width: fit-content; max-width: 212px; height: fit-content; position:absolute; bottom: 0;">
+        <div id="qrcode"></div>
+        <div id="urlholder"></div>
       </div>
       <div class="buttons">
         <button class="button-host" id="button-host" style="display: none" onclick="">Tik-Tak...</button>

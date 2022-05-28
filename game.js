@@ -179,6 +179,16 @@ let players = {};
           players[playerId].host = true;
           playerRef.set(players[playerId]);
           document.querySelector(".character-name").innerText = "";
+          document.getElementById("qrcode").innerHTML = "";
+          document.getElementById("urlholder").innerText = window.location.href;
+          var qrcode = new QRCode(document.getElementById("qrcode"), {
+          	text: window.location.href,
+          	width: 212,
+          	height: 212,
+          	colorDark : "#233296",
+          	colorLight : "#ffffff",
+          	correctLevel : QRCode.CorrectLevel.M
+          });
           if(!playingmusic)
             playRandomLobby();
         }
@@ -188,6 +198,7 @@ let players = {};
         {
           isHost = true;
           document.getElementById("button-host").style.display = "";
+          document.getElementById("qr").style.display = "";
           document.querySelector(".bg").style.display = "";
           //document.querySelector(".gamedata").style.display = "";
 
@@ -197,6 +208,7 @@ let players = {};
           isHost = false;
           document.getElementById("button-host").style.display = "none";
           document.querySelector(".bg").style.display = "none";
+          document.getElementById("qr").style.display = "none";
           document.querySelector(".gamedata").style.display = "none";
         }
 
@@ -441,6 +453,9 @@ let players = {};
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(isHost === true)
           {
+            playingmusic = false;
+            playRandomLobby();
+            document.getElementById("qr").style.display = "";
             writeNames();
           }
           break;
@@ -524,6 +539,7 @@ let players = {};
       }
     }
     document.getElementById("button-host").style.display = "none";
+    document.getElementById("qr").style.display = "none";
     countdown(5);
     waitType="game";
     waitForCountdown();
