@@ -52,6 +52,9 @@ let players = {};
 
   let playerUIDs = [];
 
+  let lobby;
+  let playingmusic = false;
+
   // gombok
   document.getElementById("name-button").onclick = function() {EnterName()};
   document.getElementById("button-host").onclick = function() {startGame()};
@@ -129,6 +132,11 @@ let players = {};
       }
       if(isHost)
       {
+        if(playing === 0)
+        {
+          if(!playingmusic)
+            playRandomLobby();
+        }
         sortListHappyness(document.getElementById("happyness"));
         sortListWealthyness(document.getElementById("wealthyness"));
 
@@ -140,6 +148,22 @@ let players = {};
         document.getElementById("as").style.opacity = worldContainer.Asia.CO/500;
       }
     })
+
+    function playRandomLobby()
+    {
+      if(playing === 0)
+      {
+        playingmusic = true;
+        var playArray = ['./audio/lobby_sine.mp3','./audio/lobby_grand.mp3','./audio/lobby_organ.mp3']
+        lobby = new Audio(randomFromArray(playArray));
+        lobby.play();
+        lobby.addEventListener('ended', function() {
+          this.currentTime = 0;
+          playingmusic = false;
+          playRandomLobby();
+        }, false);
+      }
+    }
 
     allPlayersRef.on("value", (snapshot) => {
       // érték változás
@@ -155,9 +179,8 @@ let players = {};
           players[playerId].host = true;
           playerRef.set(players[playerId]);
           document.querySelector(".character-name").innerText = "";
-          /*var lobby = new Audio('./audio/lobby.mp3');
-          lobby.loop = true;
-          lobby.play();*/
+          if(!playingmusic)
+            playRandomLobby();
         }
 
         console.log(playerId);
@@ -197,6 +220,7 @@ let players = {};
 
     allPlayersRef.on("child_added", (snapshot) => {
       // számomra új csomópontok
+      const addedPlayer = snapshot.val();
       if(playing === 0)
       {
         //console.log(players);
@@ -207,7 +231,6 @@ let players = {};
           {
             var enter = new Audio('./audio/enter.mp3');
             enter.play();
-            const addedPlayer = snapshot.val();
             playerNames.push(addedPlayer.uname);
             playerUIDs.push(addedPlayer.id);
             console.log(addedPlayer.id);
@@ -511,6 +534,8 @@ let players = {};
   {
     if(isHost === true)
     {
+      lobby.pause();
+      lobby.currentTime = 0;
       allPacketsRef.remove();
       countdown(60);
       waitType="endgame";
