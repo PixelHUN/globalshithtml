@@ -585,7 +585,7 @@ let players = {};
     console.log(choices);
     curChoice = randomFromArray(choices);
 
-    if(curChoice.minBudget <= players[playerId].profile.budget)
+    if(curChoice.minBudget <= players[playerId].profile.budget && players[playerId].profile.budget <= curChoice.minBudget+6)
     {
       document.getElementById("question").innerText = curChoice.text;
       document.getElementById("a-button").innerText = curChoice.aText;
