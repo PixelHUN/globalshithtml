@@ -38,7 +38,7 @@
         </ul>
       </div>
       <div style="width: fit-content; position: absolute; right: 0; text-align: right; padding-left: 0px;">
-        <div style="font-size: 28px">Átlagos Vagyon</div>
+        <div style="font-size: 28px">Átlagos Költség</div>
         <ul id="wealthyness" style="padding-left: 0px;">
           <li class="show">É. Amerika</li>
           <li class="show">D. Amerika</li>
@@ -50,12 +50,16 @@
       </div>
     </div>
     <div id="clientui" style="display: none">
-      <div class="playerinfo"></div>
+      <div class="playerinfo" style="text-align: left; border: 2px; border-style: solid; border-color: #74A5FF"></div>
       <div class="playerchoices">
         <div class="question" id="question">A vagy B?</div>
-        <div style="margin: auto; width: fit-content; position: relative;">
-            <button class="choice-button" id="a-button" onclick="">A</button>
-            <button class="choice-button" id="b-button" onclick="">B</button>
+        <div style="margin: auto; width: 90vw; position: relative; height: 320px;">
+            <div style="float: left; width: 50%; height: 100%;">
+              <button class="choice-button" id="a-button" onclick="">A</button>
+            </div>
+            <div style="float: right; width: 50%; height: 100%;">
+              <button class="choice-button" id="b-button" onclick="">B</button>
+            </div>
         </div>
       </div>
     </div>

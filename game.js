@@ -1,24 +1,16 @@
 // What if you'd work now?
 let choices;
-fetch("./choices.json")
+fetch("./gamedata/choices.json")
 .then(res => res.json())
 .then(data => choices = data)
 .then(() => console.log(choices));
 
-const profiles = [
-  {
-    name: "Mucsi Tamás Gábor",
-    description: "Lakcím: Európa\nLeírás: 34 éves, politikus. Erősen jobb oldali. Onnan próbál pénzt szerezni ahonnan csak tud. Jelenleg egy bírósági eljárás folyik elene.",
-    budget: 20,
-    continent: "Europe"
-  },
-  {
-    name: "Sévérine Anatole",
-    description: "Lakcím: Európa\nLeírás: 78 éves, nyugdíjas. Könyveket írt és fordított, emiatt rengeteg könyvet el is olvasott. Rengeteg tudásra tett szert eddigi élete alatt.",
-    budget: 10,
-    continent: "Europe"
-  }
-]
+let profiles;
+fetch("./gamedata/profiles.json")
+.then(res => res.json())
+.then(data => profiles = data)
+.then(() => console.log(choices));
+
 function randomFromArray(array)
 {
   return array[Math.floor(Math.random() * array.length)];
@@ -61,6 +53,22 @@ let players = {};
 
   document.getElementById("a-button").onclick = function() {choiceButton(false)};
   document.getElementById("b-button").onclick = function() {choiceButton(true)};
+
+  function playRandomLobby()
+  {
+    if(playing === 0)
+    {
+      playingmusic = true;
+      var playArray = ['./audio/lobby_sine.mp3','./audio/lobby_epiano.mp3','./audio/lobby_organ.mp3']
+      lobby = new Audio(randomFromArray(playArray));
+      lobby.play();
+      lobby.addEventListener('ended', function() {
+        this.currentTime = 0;
+        playingmusic = false;
+        playRandomLobby();
+      }, false);
+    }
+  }
 
   function initGame(){
     if(playing === 0)
@@ -148,22 +156,6 @@ let players = {};
         document.getElementById("as").style.opacity = worldContainer.Asia.CO/500;
       }
     })
-
-    function playRandomLobby()
-    {
-      if(playing === 0)
-      {
-        playingmusic = true;
-        var playArray = ['./audio/lobby_sine.mp3','./audio/lobby_epiano.mp3','./audio/lobby_organ.mp3']
-        lobby = new Audio(randomFromArray(playArray));
-        lobby.play();
-        lobby.addEventListener('ended', function() {
-          this.currentTime = 0;
-          playingmusic = false;
-          playRandomLobby();
-        }, false);
-      }
-    }
 
     allPlayersRef.on("value", (snapshot) => {
       // érték változás
@@ -382,6 +374,10 @@ let players = {};
       getContinentFromProfile(_world, players[playerId].profile).Happyness += curChoice.aOption.Happyness;
       getContinentFromProfile(_world, players[playerId].profile).Temperature += curChoice.aOption.Temperature;
       getContinentFromProfile(_world, players[playerId].profile).Wealthyness += curChoice.aOption.Wealthyness;
+
+      players[playerId].CO += curChoice.aOption.CO;
+      players[playerId].Happyness += curChoice.aOption.Happyness;
+      players[playerId].Wealthyness += curChoice.aOption.Wealthyness;
     }
     else
     {
@@ -389,7 +385,12 @@ let players = {};
       getContinentFromProfile(_world, players[playerId].profile).Happyness += curChoice.bOption.Happyness;
       getContinentFromProfile(_world, players[playerId].profile).Temperature += curChoice.bOption.Temperature;
       getContinentFromProfile(_world, players[playerId].profile).Wealthyness += curChoice.bOption.Wealthyness;
+
+      players[playerId].CO += curChoice.bOption.CO;
+      players[playerId].Happyness += curChoice.bOption.Happyness;
+      players[playerId].Wealthyness += curChoice.bOption.Wealthyness;
     }
+    playerRef.set(players[playerId]);
     SendToBuffer(_world);
     if(playing === 1)
     {
@@ -444,6 +445,7 @@ let players = {};
           game();
           break;
         case "endgame":
+          console.log("VÉGE");
           playing = 0;
           worldContainer.playing = playing;
           world.set(worldContainer);
@@ -553,7 +555,7 @@ let players = {};
       lobby.pause();
       lobby.currentTime = 0;
       allPacketsRef.remove();
-      countdown(60);
+      countdown(300);
       waitType="endgame";
       countdownFinished = false;
 
@@ -767,7 +769,10 @@ let players = {};
           id: playerId,
           host: false,
           uname: username,
-          profile: profiles[0]
+          profile: profiles[0],
+          CO: 0,
+          Happyness: 0,
+          Wealthyness: 0
         })
 
         playerRef.onDisconnect().remove();

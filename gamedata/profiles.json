@@ -1,0 +1,194 @@
+[
+  {
+    "name": "Mucsi Tamás Gábor",
+    "description": "Lakcím: Európa\nLeírás: 34 éves, politikus. Erősen jobboldali. Onnan próbál pénzt szerezni ahonnan csak tud. Jelenleg egy bírósági eljárás folyik ellene.",
+    "budget": 20,
+    "continent": "Europe"
+  },
+  {
+    "name": "Chao Zhu",
+    "description": "Lakcím: Ázsia\nLeírás: 53 éves, munkanélküli. Alkohol problémákkal küzd. Legtöbbször arra sem emlékszik, hogy került haza. Felesége otthagyta évekkel ezelőtt.",
+    "budget": 2,
+    "continent": "Asia"
+  },
+  {
+    "name": "Yumi Kanzaki",
+    "description": "Lakcím: Ázsia\nLeírás: 30 éves, grafikus. A művészet az élete. Úgy hiszi senki nem érti őt meg igazán, így a rajzain keresztül próbálja megmutatni önmagát.",
+    "budget": 8,
+    "continent": "Asia"
+  },
+  {
+    "name": "Rena Newman",
+    "description": "Lakcím: É. Amerika\nLeírás: 12 éves, diák. Szülei alkoholisták. 10 éves kora óta, szinte önállóan él. Barátaival lóg szinte 0/24. Az iskolai \"Mentsük meg a világot!\" mozgalom tagja.",
+    "budget": 2,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Sunshine Bell",
+    "description": "Lakcím: Ausztrália\nLeírás: 25 éves, bolti eladó. Nem bírta az egyetemi nyomást, ezért hamarabb abbahagyta. Most egy sarki boltban eladó. Kemény dohányzó.",
+    "budget": 5,
+    "continent": "Australia"
+  },
+  {
+    "name": "Yi Leung",
+    "description": "Lakcím: Ázsia\nLeírás: 24 éves, taxisofőr. Szülei viszonylag fiatalon kidobták otthonról. Rengeteget utazott autójával. Gondolkodik azon, hogy elmegy egyetemre, de fizetéséből nem biztos, hogy ki tudná fizetni.",
+    "budget": 5,
+    "continent": "Asia"
+  },
+  {
+    "name": "Xaawo Ihejirika",
+    "description": "Lakcím: Afrika\nLeírás: 54 éves, énekes. Élete a zene. Gyermekkorában zenei iskolába járt. Több slágert is írt. A koncertjei bevételéből alapítványokat szokott támogatni.",
+    "budget": 9,
+    "continent": "Africa"
+  },
+  {
+    "name": "William Thomas",
+    "description": "Lakcím: Európa\nLeírás: 21 éves, egyetemi hallgató. Jogi karon hallgat, emellett másodállásban egy gyorsétteremben dolgozik. Hétvégénként haverjaival \"bandázik\".",
+    "budget": 4,
+    "continent": "Europe"
+  },
+  {
+    "name": "Verónica Alonso",
+    "description": "Lakcím: D. Amerika\nLeírás: 30 éves, titkárnő. Lapos Föld hívő. Minden álhírt elhisz az interneten, valamiért mégis megtartotta eddig az állását.",
+    "budget": 13,
+    "continent": "SAmerica"
+  },
+  {
+    "name": "Thompson Kes",
+    "description": "Lakcím: É. Amerika\nLeírás: 26 éves, programozó. 11 éves kora óta programozik. Azóta meg sem állt. Minden napját számítógép előtt tölti. Emberekkel nem lép soha kontaktusba. Híres programjai a SusOS és a GridGame.",
+    "budget": 15,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Sissy Ridge",
+    "description": "Lakcím: Ausztrália\nLeírás: 29 éves, író. Fiatal korában a gerincoszlopa megsérült, ezért kerekesszékbe került. Imádott történeteket mesélni, ezért lett író. Kiadatott egy társadalomkritika könyvet.",
+    "budget": 15,
+    "continent": "Australia"
+  },
+  {
+    "name": "Eusébio Rocha",
+    "description": "Lakcím: D. Amerika\nLeírás: 51 éves, politikus. Baloldali politikus. \"Tisztán játszik\", nem csal soha semmiben. Pontosan ezért nem választják soha meg. A legjobbat akarja az országának.",
+    "budget": 18,
+    "continent": "SAmerica"
+  },
+  {
+    "name": "Laura Stumpf",
+    "description": "Lakcím: Európa\nLeírás: 42 éves, ápolónő. Szeretne Kanadába költözni, viszont fizetése hosszútávon nem engedné neki. Hobbija a kertészkedés és növénytermesztés.",
+    "budget": 7,
+    "continent": "Europe"
+  },
+  {
+    "name": "Hannah Alvin",
+    "description": "Lakcím: É. Amerika\nLeírás: 41 éves, építészmérnök. Gyerekként részt vett egy épitkezési kiállításon. Akkor döntött úgy, hogy építészmérnök lesz. Mindent meg tesz azért, hogy a régi korok épületeit megvédje.",
+    "budget": 7,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Gustavo Gonçalves",
+    "description": "Lakcím: D. Amerika\nLeírás: 57 éves, villanyszerelő. Gyermekkorában sokat ügyködött áramkörökkel. Ekkor szeretett bele a szakmájába. Egyszer-kétszer megrázta már az áram, de egyébként nagyon jó a munkájában.",
+    "budget": 7,
+    "continent": "SAmerica"
+  },
+  {
+    "name": "Ace Ware",
+    "description": "Lakcím: Ausztrália\nLeírás: 54 éves, kéményseprő. Bár van munkája, legtöbb pénzét szerencsejátékon keresi. Van hogy rengeteget nyer rajta, de van hogy rengeteget veszít. Még mindig vannak tartozásai.",
+    "budget": 20,
+    "continent": "Australia"
+  },
+  {
+    "name": "Chizoba Okafor",
+    "description": "Lakcím: Afrika\nLeírás: 26 éves, állat tenyésztő. Állat tenyésztésben szinte a tökéletesre törekszik. Sose felejtette el gyermekkori kutyájukat, aki egy beltenyésztési betegségben hunyt el.",
+    "budget": 5,
+    "continent": "Africa"
+  },
+  {
+    "name": "Larry Rounds",
+    "description": "Lakcím: É. Amerika\nLeírás: 31 éves, marketinges. Viszonylag magas rangú a cégnél ahol dolgozik. Felesége ikreket vár. Mindent meg szeretne tenni értük, azonban munkája valószínűleg nem engedné.",
+    "budget": 8,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Gina Aiolfi",
+    "description": "Lakcím: Európa\nLeírás: 59 éves, buszvezető. Fia egy buszbalesetben halt meg, azóta gyűlöli a munkáját, azonban fizetése és életkora nem engedi, hogy munkát váltson. Óvatossága miatt ő az egyik legjobb a szakmájában.",
+    "budget": 5,
+    "continent": "Europe"
+  },
+  {
+    "name": "Yevheniy Ivanov",
+    "description": "Lakcím: Európa\nLeírás: 27 éves, múzeumi kurátor. Ezt a szakmát nagyon máshogy képzelte el. Utazásokkal, kutatómunkával. Viszont általános iskolai csoportokat kell vezetnie. Elég csalódott emiatt.",
+    "budget": 10,
+    "continent": "Europe"
+  },
+  {
+    "name": "Kierra Hughes",
+    "description": "Lakcím: Ausztrália\nLeírás: 31 éves, fogorvos. Kedves, nyugodt természetű. Két kislánya van, mindketten nagyon szeretik. Tökéletes anyának születtet. Férjével boldogan élnek.",
+    "budget": 10,
+    "continent": "Australia"
+  },
+  {
+    "name": "Eun-Yeong Im",
+    "description": "Lakcím: Ázsia\nLeírás: 41 éves, repülőgép pilóta. Egészségügyi gondokkal küzködik, viszont munkáját nem akarja feladni. Békés, nyugodt ember. Családja nincs, folyton utazik. Élete a repülés.",
+    "budget": 16,
+    "continent": "Asia"
+  },
+  {
+    "name": "Arsénio Pereyra",
+    "description": "Lakcím: D. Amerika\nLeírás: 21 éves, egyetemi hallgató. Matematika tanári karon hallgat. Általános iskolai matek tanára inspirálta a tovább tanulásában. Szerinte nagyon fontos a megfelelő tanítás és ő is erre törekszik.",
+    "budget": 5,
+    "continent": "SAmerica"
+  },
+  {
+    "name": "Takashi Tsukuda",
+    "description": "Lakcím: Ázsia\nLeírás: 49 éves, játék tervező. Először a Nintendonál dolgozott, most viszon saját indie játék céget alapított. Vakmerő ötletekkel rendelkezik, de eddigi játékai amin dolgozott nagyon népszerűek.",
+    "budget": 14,
+    "continent": "Asia"
+  },
+  {
+    "name": "Emmelo Maglate",
+    "description": "Lakcím: Afrika\nLeírás: 17 éves, diák. Elhagyta a barátnője. Mély depresszióban van. Baráti társaságával sem találkozgat már. Utálja az egész emberiséget.",
+    "budget": 4,
+    "continent": "Africa"
+  },
+  {
+    "name": "Gisela Quijano",
+    "description": "Lakcím: D. Amerika\nLeírás: 49 éves, zenész. Órjási a szeretete a zene felé. Több operát is írt, de fél előadni őket. Jelenleg leginkább dalszöveg írásban munkálkodik. Gyereke nem lehet.",
+    "budget": 11,
+    "continent": "SAmerica"
+  },
+  {
+    "name": "Bret Deadman",
+    "description": "Lakcím: É. Amerika\nLeírás: 86 éves, nyugdíjas. Tipikus Facebookos nyugdíjas. Minden napját otthon tölti, tévénézéssel és az internet szörföléssével. Két unokája van, akiket \"nagyon szeret\".",
+    "budget": 10,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Idowu Ayodele",
+    "description": "Lakcím: Afrika\nLeírás: 73 éves, nyugdíjas. Nagyon szereti az unokáit. Legtöbb idejét velük tölti, hisz az ő szüleik rengeteget dolgoznak. Nincs ideje nagyon mással foglalkozni ez által.",
+    "budget": 10,
+    "continent": "Africa"
+  },
+  {
+    "name": "Ross Howard",
+    "description": "Lakcím: Ausztrália\nLeírás: 82 éves, nyugdíjas. Hobbija a kertészkedés. Az otthon termesztett zöldségeit a piacra szokta vinni. Felesége már elhunyt. Egyedül él.",
+    "budget": 10,
+    "continent": "Australia"
+  },
+  {
+    "name": "Efemena Botha",
+    "description": "Lakcím: Afrika\nLeírás: 39 éves, burkoló. Érdekes vonzódást érez a gyerekek felé. Morálisan viszont tudja, hogy ez nem helyes. Mégis nehezen tudja visszatartani magát.",
+    "budget": 8,
+    "continent": "Africa"
+  },
+  {
+    "name": "Kalie Waterman",
+    "description": "Lakcím: É. Amerika\nLeírás: 25 éves, munkanélküli. Egyetemen végzett, jelenleg szüleivel él. \"Folyamatosan próbál\" munkát találni. Legtöbb idejét baráti klubjával tölti.",
+    "budget": 4,
+    "continent": "NAmerica"
+  },
+  {
+    "name": "Anatole Vidal",
+    "description": "Lakcím: Európa\nLeírás: 78 éves, nyugdíjas. Könyveket írt és fordított, emiatt rengeteg könyvet el is olvasott. Rengeteg tudásra tett szert eddigi élete alatt.",
+    "budget": 12,
+    "continent": "Europe"
+  }
+]
