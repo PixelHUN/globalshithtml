@@ -154,7 +154,7 @@ let players = {};
       if(playing === 0)
       {
         playingmusic = true;
-        var playArray = ['./audio/lobby_sine.mp3','./audio/lobby_grand.mp3','./audio/lobby_organ.mp3']
+        var playArray = ['./audio/lobby_sine.mp3','./audio/lobby_epiano.mp3','./audio/lobby_organ.mp3']
         lobby = new Audio(randomFromArray(playArray));
         lobby.play();
         lobby.addEventListener('ended', function() {
