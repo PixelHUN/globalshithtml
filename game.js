@@ -530,9 +530,9 @@ let players = {};
       {
         console.log(i);
         console.log(playerUIDs[i]);
-        console.log(worldContainer.profiles[0]);
+        console.log(worldContainer.profiles);
         players[playerUIDs[i]].profile = worldContainer.profiles[0];
-        worldContainer.profiles.splice(i,1);
+        worldContainer.profiles.splice(0,1);
 
         var setPlayer = firebase.database().ref(`players/${playerUIDs[i]}`);
         console.log("set "+playerUIDs[i]+" id's profile to: "+players[playerUIDs[i]].profile);
@@ -583,17 +583,17 @@ let players = {};
   function showChoice()
   {
     console.log(choices);
-    curChoice = randomFromArray(choices);
 
-    if(curChoice.minBudget <= players[playerId].profile.budget && players[playerId].profile.budget <= curChoice.minBudget+6)
+    do
     {
-      document.getElementById("question").innerText = curChoice.text;
-      document.getElementById("a-button").innerText = curChoice.aText;
-      document.getElementById("b-button").innerText = curChoice.bText;
-    } else
-    {
-      showChoice();
-    }
+      curChoice = randomFromArray(choices);
+    } while(curChoice.minBudget <= players[playerId].profile.budget && players[playerId].profile.budget <= curChoice.minBudget+3)
+
+    document.getElementById("question").innerText = curChoice.text;
+    document.getElementById("a-button").innerText = curChoice.aText;
+    document.getElementById("b-button").innerText = curChoice.bText;
+
+    //showChoice();
   }
 
   // szerver buffer
