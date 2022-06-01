@@ -447,6 +447,8 @@ let players = {};
         case "endgame":
           console.log("VÉGE");
           playing = 2;
+          worldContainer.playing = playing;
+          world.set(worldContainer);
           var barColors = ["red","green","blue","yellow","purple","brown"];
           var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
           var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
@@ -465,10 +467,24 @@ let players = {};
             options: {
               title: {
                 display: true,
-                text: "Átlagos CO2 Kibocsátás Országonként"
+                text: "Átlagos CO2 Kibocsátás Országonként",
+                fontColor: '#000000',
+                fontSize: 32
+              },
+              legend: {
+                display: true,
+                labels: {
+                  fontSize: 20
+                }
               }
             }
           });
+          document.getElementById("co2pie").style.zIndex = "4";
+          document.getElementById("clientui").style.display = "none";
+          document.querySelector(".character-name").innerText = "Köszönjük, hogy játszottál!";
+          document.querySelector(".countdown").style.fontSize = "40px";
+          document.querySelector(".countdown").innerText = "A játék véget ért...";
+
           /*worldContainer.playing = playing;
           world.set(worldContainer);
           document.getElementById("button-host").style.display = "";
@@ -597,7 +613,7 @@ let players = {};
       document.querySelector(".gamedata").style.display = "";
     }
     else {
-      switch(player[playerId].profile.class)
+      switch(players[playerId].profile.class)
       {
         case 0:
           // draw question from class 0
@@ -607,6 +623,10 @@ let players = {};
           .then(() => console.log(choices));
           break;
         default:
+          fetch("./gamedata/choices.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
           break;
       }
 
@@ -622,15 +642,26 @@ let players = {};
 
   function showChoice()
   {
-    curChoice = randomFromArray(choices);
-    var index = choices.indexOf(curChoice);
-    if (index > -1) {
-      choices.splice(index, 1);
+    if(choices.length >= 1)
+    {
+      curChoice = randomFromArray(choices);
+      var index = choices.indexOf(curChoice);
+      if (index > -1) {
+        choices.splice(index, 1);
+      }
+
+      document.getElementById("question").innerText = curChoice.text;
+      document.getElementById("a-button").innerText = curChoice.aText;
+      document.getElementById("b-button").innerText = curChoice.bText;
+    }
+    else
+    {
+      document.getElementById("clientui").style.display = "none";
+      document.getElementById("nongameplay").style.display = "";
+      document.querySelector(".character-name").style.display = "";
+      document.querySelector(".character-name").innerText = "Dőlj hátra!\nElfogytak a kérdések számodra...";
     }
 
-    document.getElementById("question").innerText = curChoice.text;
-    document.getElementById("a-button").innerText = curChoice.aText;
-    document.getElementById("b-button").innerText = curChoice.bText;
     /*console.log(choices);
 
     do
