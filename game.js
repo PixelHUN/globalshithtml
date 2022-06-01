@@ -570,6 +570,19 @@ let players = {};
       document.querySelector(".gamedata").style.display = "";
     }
     else {
+      switch(player[playerId].profile.class)
+      {
+        case 0:
+          // draw question from class 0
+          fetch("./gamedata/choices_0.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        default:
+          break;
+      }
+
       document.querySelector(".playerinfo").innerText = players[playerId].profile.name+"\n"+players[playerId].profile.description;
       document.getElementById("clientui").style.display = "";
       document.querySelector(".character-name").style.display = "none";
@@ -582,7 +595,16 @@ let players = {};
 
   function showChoice()
   {
-    console.log(choices);
+    curChoice = randomFromArray(choices);
+    var index = choices.indexOf(curChoice);
+    if (index > -1) {
+      choices.splice(index, 1);
+    }
+
+    document.getElementById("question").innerText = curChoice.text;
+    document.getElementById("a-button").innerText = curChoice.aText;
+    document.getElementById("b-button").innerText = curChoice.bText;
+    /*console.log(choices);
 
     do
     {
@@ -591,7 +613,7 @@ let players = {};
 
     document.getElementById("question").innerText = curChoice.text;
     document.getElementById("a-button").innerText = curChoice.aText;
-    document.getElementById("b-button").innerText = curChoice.bText;
+    document.getElementById("b-button").innerText = curChoice.bText;*/
 
     //showChoice();
   }

@@ -1,0 +1,36 @@
+[
+  {
+    "text": "A boltban akciós a sör.",
+    "aText": "Veszek egy kartonnal többet!",
+    "bText": "Csak a szokásos adag.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "A boltban akciós a sör.",
+    "aText": "Veszek egy kartonnal többet!",
+    "bText": "Csak a szokásos adag.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  }
+]
