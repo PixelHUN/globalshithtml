@@ -446,8 +446,30 @@ let players = {};
           break;
         case "endgame":
           console.log("VÉGE");
-          playing = 0;
-          worldContainer.playing = playing;
+          playing = 2;
+          var barColors = ["red","green","blue","yellow","purple","brown"];
+          var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
+          var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
+          console.log(yValues);
+          console.log(xValues);
+          var ctx = document.getElementById("co2pie").getContext('2d');
+          new Chart(ctx, {
+            type: "pie",
+            data: {
+              labels: xValues,
+              datasets: [{
+                backgroundColor: barColors,
+                data: yValues
+              }]
+            },
+            options: {
+              title: {
+                display: true,
+                text: "Átlagos CO2 Kibocsátás Országonként"
+              }
+            }
+          });
+          /*worldContainer.playing = playing;
           world.set(worldContainer);
           document.getElementById("button-host").style.display = "";
           document.querySelector(".gamedata").style.display = "none";
@@ -459,6 +481,11 @@ let players = {};
             playRandomLobby();
             document.getElementById("qr").style.display = "";
             writeNames();
+          }*/
+          if(isHost === true)
+          {
+            playingmusic = false;
+            playRandomLobby();
           }
           break;
       }
@@ -555,7 +582,7 @@ let players = {};
       lobby.pause();
       lobby.currentTime = 0;
       allPacketsRef.remove();
-      countdown(300);
+      countdown(30);
       waitType="endgame";
       countdownFinished = false;
 

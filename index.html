@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1,user-scalable=no" charset="utf-8">
-    <title>Globalitás</title>
+    <title>Élet™</title>
     <link rel="stylesheet" href="./css/master.css">
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
@@ -17,6 +17,7 @@
   </head>
   <body>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
     <div class="bg" style="display: none">
       <img id="na" src="./css/images/world_namerica.png" style="position: absolute; opacity: 0;">
       <img id="sa" src="./css/images/world_samerica.png" style="position: absolute; opacity: 0;">
@@ -25,6 +26,7 @@
       <img id="au" src="./css/images/world_australia.png" style="position: absolute; opacity: 0;">
       <img id="as" src="./css/images/world_asia.png" style="position: absolute; opacity: 0;">
     </div>
+    <canvas id="co2pie" style="width:700;height:700;position: absolute;"></canvas>
     <div class="gamedata" style="display: none">
       <div style="width: fit-content; position: absolute; left: 0; padding-left: 0px;">
         <div style="font-size: 28px">Átlagos Jókedv</div>
