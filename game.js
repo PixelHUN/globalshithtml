@@ -144,12 +144,12 @@ let players = {};
         sortListHappyness(document.getElementById("happyness"));
         sortListWealthyness(document.getElementById("wealthyness"));
 
-        document.getElementById("na").style.opacity = worldContainer.NAmerica.CO/500;
-        document.getElementById("sa").style.opacity = worldContainer.SAmerica.CO/500;
-        document.getElementById("eu").style.opacity = worldContainer.Europe.CO/500;
-        document.getElementById("af").style.opacity = worldContainer.Africa.CO/500;
-        document.getElementById("au").style.opacity = worldContainer.Australia.CO/500;
-        document.getElementById("as").style.opacity = worldContainer.Asia.CO/500;
+        document.getElementById("na").style.opacity = worldContainer.NAmerica.CO/100;
+        document.getElementById("sa").style.opacity = worldContainer.SAmerica.CO/100;
+        document.getElementById("eu").style.opacity = worldContainer.Europe.CO/100;
+        document.getElementById("af").style.opacity = worldContainer.Africa.CO/100;
+        document.getElementById("au").style.opacity = worldContainer.Australia.CO/100;
+        document.getElementById("as").style.opacity = worldContainer.Asia.CO/100;
       }
     })
 
@@ -474,6 +474,10 @@ let players = {};
 
   function endState()
   {
+    document.getElementById("button-host").style.display = "";
+    document.getElementById("button-host").innerText = "Következő...";
+    document.getElementById("button-host").onclick = function() {endState()};
+
     switch(state)
     {
       case 0:
@@ -574,6 +578,8 @@ let players = {};
     document.querySelector(".countdown").style.fontSize = "40px";
     document.querySelector(".countdown").innerText = "A játék véget ért...";
     state++;
+    if(state > 1)
+      state = 0;
 
     /*worldContainer.playing = playing;
     world.set(worldContainer);
@@ -666,7 +672,7 @@ let players = {};
       lobby.pause();
       lobby.currentTime = 0;
       allPacketsRef.remove();
-      countdown(90);
+      countdown(60);
       waitType="endgame";
       countdownFinished = false;
 
