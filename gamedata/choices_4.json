@@ -85,6 +85,23 @@
     }
   },
   {
+    "text": "Egy jól szigetelt, közepes méretű, kényelmes lakással szemezgetsz.",
+    "aText": "Itt az ideje költözni!",
+    "bText": "Nekem az eddigi lakhelyem is megfelel.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 10,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 2
+    }
+  },
+  {
     "text": "Kezd elöregedni a telefonod.",
     "aText": "Itt az ideje lecserélni.",
     "bText": "Addig használom amíg jó.",
