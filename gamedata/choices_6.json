@@ -1,0 +1,121 @@
+[
+  {
+    "text": "Egy nemzeti ünnep programlistája került eléd. Melyik opció a szimpatikusabb?",
+    "aText": "Hatalmas parádé, felvonulás.",
+    "bText": "Nagy programok, nyílt napok múzeumokban.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 6,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Itt van egy kis vakáció ideje. Hova menjünk?",
+    "aText": "Luxus hajó utazás!",
+    "bText": "Pihentető nyaralás a tengerparton!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 5,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 3,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Az országgyűlés a megújjuló energia forrásokról szavaz.",
+    "aText": "Jelenleg nincs rá igény.",
+    "bText": "Fektessünk bele több pénzt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 5,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Sietsz egy fontos megbeszélésre, de az utcán a média megállít egy interjúra.",
+    "aText": "Nem érek ráááááá!",
+    "bText": "Oké, de csak egy-két kérdés!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 2,
+      "CO": 1
+    }
+  }
+  {
+    "text": "Megjött a kampánypénz.",
+    "aText": "Hírdessük vele a pártunkat.",
+    "bText": "Költsük a közterületek felújítására.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -2,
+      "Wealthyness": 6,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 4,
+      "Wealthyness": 5,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Az irodádat ki kéne dekorálni.",
+    "aText": "Mondjuk egy pár virággal.",
+    "bText": "Mondjuk egy pár asztali dekorral.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 3,
+      "CO": 1
+    }
+  },
+  {
+    "text": "Kezd elöregedni a telefonod.",
+    "aText": "Itt az ideje lecserélni.",
+    "bText": "Addig használom amíg jó.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  }
+]

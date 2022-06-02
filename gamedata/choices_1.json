@@ -1,0 +1,104 @@
+[
+  {
+    "text": "Elhívtak a barátaid suli után mekizni.",
+    "aText": "Meh, nincs kedvem.",
+    "bText": "Persze, hogy megyek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 1,
+      "CO": 3
+    }
+  },
+  {
+    "aText": "Csak eldobom.",
+    "bText": "Majd otthon kidobom.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 2
+    },
+    "text": "Nincs a közelben szemetes, pedig ki kéne dobnod egy zacskót.",
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Ma úgy döntött a vonatod, hogy nem jön.",
+    "aText": "Hát akkor irány haza.",
+    "bText": "Szüleim csak elvisznek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 1,
+      "CO": 2
+    }
+  },
+  {
+    "aText": "Nem próbálom ki.",
+    "bText": "Én is kipróbálom.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "text": "A baráti társaságodban elterjedt a dohányzás.",
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 3,
+      "CO": 2
+    }
+  },
+  {
+    "text": "A kémia tanár nem jól javította a dolgozatot.",
+    "aText": "Szólok neki.",
+    "bText": "Hagyom a fenébe.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": ,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -2,
+      "Wealthyness": 0,
+      "CO": 3
+    }
+  },
+  {
+    "text": "Édesapád munkahelyet váltott, így minden nap be tudna vinni autóval az iskolába.",
+    "aText": "Megyek biciklivel.",
+    "bText": "Majd Apa elvisz.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 2
+    }
+  }
+]

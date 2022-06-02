@@ -1,0 +1,104 @@
+[
+  {
+    "text": "Szeretnél magadnak egy hobbit.",
+    "aText": "Sütés, főzés.",
+    "bText": "Kertészkedés.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Mit főzöl az unokádnak?",
+    "aText": "Jó kis szaftos pörkölt!",
+    "bText": "Egy jó, finom babfözelék!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 3,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Lehet kéne egy kicsit mozogni.",
+    "aText": "Menjük ki sétálni!",
+    "bText": "Neeem, a szappanoperám fontosabb!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 1,
+      "CO": 1
+    }
+  },
+  {
+    "text": "Kezd elöregedni a telefonod.",
+    "aText": "Itt az ideje lecserélni.",
+    "bText": "Addig használom amíg jó.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Választás van!",
+    "aText": "Hajrá \"SokNyugdíj\" párt!",
+    "bText": "Hajrá \"Zöld Jövöért Küzdünk\" párt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 3,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Találkozhatsz Giga Chad-el.",
+    "aText": "Találkozok. (Based)",
+    "bText": "Nem találkozok. (Cringe)",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  }
+]

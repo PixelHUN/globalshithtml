@@ -17,19 +17,104 @@
     }
   },
   {
-    "text": "",
-    "aText": "Veszek egy kartonnal többet!",
-    "bText": "Csak a szokásos adag.",
+    "text": "Választás van!",
+    "aText": "Hajrá \"FizetekNeked\" párt!",
+    "bText": "Hajrá \"Zöld Jövöért Küzdünk\" párt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 3,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "aText": "Csak eldobom.",
+    "bText": "Majd otthon kidobom.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 2
+    },
+    "text": "Nincs a közelben szemetes, pedig ki kéne dobnod egy zacskót.",
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "aText": "Utcán alszom.",
+    "bText": "Taxit, legyen szíves!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "text": "Barátaid elhívtak a közeli kocsmába és most haza kell jutnod valahogy.",
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 1,
+      "CO": 2
+    }
+  },
+  {
+    "text": "Egészen rossz napod volt, a borosüveg pedig még tele van.",
+    "aText": "Egy kicsi nem árthat.",
+    "bText": "Jön még majd az este.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 2,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Igazán kevesled a pénzed.",
+    "aText": "Majd megjön a munkanélküli segély.",
+    "bText": "Egy kis \"koldulás\" nem árt.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 2,
+      "CO": 0
+    }
+  },
+  {
+    "text": "A sarki boltban elfogyott az olcsó pálinka.",
+    "aText": "Elmegyek a plázába venni.",
+    "bText": "Egy kicsivel drágább nem fájhat.",
     "aOption": {
       "Temperature": 0,
       "Happyness": 1,
-      "Wealthyness": 2,
+      "Wealthyness": 1,
       "CO": 2
     },
     "bOption": {
       "Temperature": 0,
       "Happyness": -1,
-      "Wealthyness": 0,
+      "Wealthyness": 4,
       "CO": 0
     }
   }

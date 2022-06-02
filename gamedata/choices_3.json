@@ -1,0 +1,138 @@
+[
+  {
+    "text": "Elhívtak a barátaid mekizni.",
+    "aText": "Meh, nincs kedvem.",
+    "bText": "Persze, hogy megyek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 1,
+      "CO": 2
+    }
+  },
+  {
+    "text": "Választás van!",
+    "aText": "Hajrá \"FizetekNeked\" párt!",
+    "bText": "Hajrá \"Zöld Jövöért Küzdünk\" párt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 3,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "A lakhelyeden nincs légkondi.",
+    "aText": "Annyira csak nem lesz meleg.",
+    "bText": "Félre rakok egyre.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 6,
+      "CO": 3
+    }
+  },
+  {
+    "text": "Nincs a közelben szemetes, pedig ki kéne dobnod egy zacskót.",
+    "aText": "Csak eldobom.",
+    "bText": "Majd otthon kidobom.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Kezd elöregedni az autód.",
+    "aText": "Félrerakok egy autóra.",
+    "bText": "Amíg működik addig használom!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 7,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 3,
+      "CO": 4
+    }
+  },
+  {
+    "text": "A párod elhívott vacsorázni.",
+    "aText": "Egy jó steaket, legyen szíves!",
+    "bText": "Valami salátát szeretnék.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 4,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Lehetőséged adódott fejleszteni az otthoni számítógépedet.",
+    "aText": "Fejlesztem.",
+    "bText": "Nincs rá nagy szükségem.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Egy jól szigetelt, közepes méretű, kényelmes lakással szemezgetsz.",
+    "aText": "Itt az ideje költözni!",
+    "bText": "Nekem ez a ház is megfelel.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 10,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 2
+    }
+  }
+]

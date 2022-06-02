@@ -1,0 +1,121 @@
+[
+  {
+    "text": "Választás van!",
+    "aText": "Hajrá \"FizetekNeked\" párt!",
+    "bText": "Hajrá \"Zöld Jövöért Küzdünk\" párt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 3,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Elhívtak a barátaid mekizni.",
+    "aText": "Meh, nincs kedvem.",
+    "bText": "Persze, hogy megyek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 1,
+      "CO": 2
+    }
+  },
+  {
+    "text": "Kezd elöregedni az autód.",
+    "aText": "Félrerakok egy autóra.",
+    "bText": "Amíg működik addig használom!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 7,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 3,
+      "CO": 4
+    }
+  },
+  {
+    "text": "Lehetőséged adódott fejleszteni az otthoni számítógépedet.",
+    "aText": "Fejlesztem.",
+    "bText": "Nincs rá nagy szükségem.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Van végre egy kis szabadidőd.",
+    "aText": "Elmegyek a könyvtárba.",
+    "bText": "Elmegyek a moziba.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 2,
+      "CO": 1
+    }
+  },
+  {
+    "text": "Kezd elöregedni a telefonod.",
+    "aText": "Itt az ideje lecserélni.",
+    "bText": "Addig használom amíg jó.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "A párod elhívott vacsorázni.",
+    "aText": "Egy jó steaket, legyen szíves!",
+    "bText": "Valami salátát szeretnék.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 4,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  }
+]

@@ -449,57 +449,9 @@ let players = {};
           playing = 2;
           worldContainer.playing = playing;
           world.set(worldContainer);
-          var barColors = ["red","green","blue","yellow","purple","brown"];
-          var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
-          var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
-          console.log(yValues);
-          console.log(xValues);
-          var ctx = document.getElementById("co2pie").getContext('2d');
-          new Chart(ctx, {
-            type: "pie",
-            data: {
-              labels: xValues,
-              datasets: [{
-                backgroundColor: barColors,
-                data: yValues
-              }]
-            },
-            options: {
-              title: {
-                display: true,
-                text: "Átlagos CO2 Kibocsátás Országonként",
-                fontColor: '#000000',
-                fontSize: 32
-              },
-              legend: {
-                display: true,
-                labels: {
-                  fontSize: 20
-                }
-              }
-            }
-          });
-          document.getElementById("co2pie").style.zIndex = "4";
-          document.getElementById("clientui").style.display = "none";
-          document.querySelector(".character-name").innerText = "Köszönjük, hogy játszottál!";
-          document.querySelector(".countdown").style.fontSize = "40px";
-          document.querySelector(".countdown").innerText = "A játék véget ért...";
-
-          /*worldContainer.playing = playing;
-          world.set(worldContainer);
-          document.getElementById("button-host").style.display = "";
-          document.querySelector(".gamedata").style.display = "none";
-          document.querySelector(".countdown").style.fontSize = "40px";
-          document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
           if(isHost === true)
           {
-            playingmusic = false;
-            playRandomLobby();
-            document.getElementById("qr").style.display = "";
-            writeNames();
-          }*/
-          if(isHost === true)
-          {
+            endState();
             playingmusic = false;
             playRandomLobby();
           }
@@ -520,6 +472,126 @@ let players = {};
       }
     });
     document.querySelector(".character-name").innerText = _pntext;
+  }
+
+  var state = 0;
+
+  function endState()
+  {
+    switch(state)
+    {
+      case 0:
+        var barColors = ["red","green","blue","yellow","purple","brown"];
+        var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
+        var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
+        console.log(yValues);
+        console.log(xValues);
+        var ctx = document.getElementById("co2pie").getContext('2d');
+        new Chart(ctx, {
+          type: "pie",
+          data: {
+            labels: xValues,
+            datasets: [{
+              backgroundColor: barColors,
+              data: yValues
+            }]
+          },
+          options: {
+            title: {
+              display: true,
+              text: "Átlagos CO2 Kibocsátás Országonként",
+              fontColor: '#000000',
+              fontSize: 32
+            },
+            legend: {
+              display: true,
+              labels: {
+                fontSize: 20
+              }
+            }
+          }
+        });
+        document.getElementById("co2pie").style.zIndex = "4";
+        break;
+
+      case 1:
+        var barColors = ["red","green","blue","yellow","purple","brown"];
+        var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
+        var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
+        var yValuesTwo = [worldContainer.NAmerica.Wealthyness,worldContainer.SAmerica.Wealthyness,worldContainer.Europe.Wealthyness,worldContainer.Africa.Wealthyness,worldContainer.Asia.Wealthyness,worldContainer.Australia.Wealthyness,];
+        console.log(yValues);
+        console.log(xValues);
+        var ctx = document.getElementById("co2pie").getContext('2d');
+        new Chart(ctx, {
+          type: "bar",
+          data: {
+            labels: xValues,
+            datasets: [
+              {
+                backgroundColor: barColors[0],
+                data: [yValues[0], yValuesTwo[0]]
+              },
+              {
+                backgroundColor: barColors[1],
+                data: [yValues[1], yValuesTwo[1]]
+              },
+              {
+                backgroundColor: barColors[2],
+                data: [yValues[2], yValuesTwo[2]]
+              },
+              {
+                backgroundColor: barColors[3],
+                data: [yValues[3], yValuesTwo[3]]
+              },
+              {
+                backgroundColor: barColors[4],
+                data: [yValues[4], yValuesTwo[4]]
+              },
+              {
+                backgroundColor: barColors[5],
+                data: [yValues[5], yValuesTwo[5]]
+              }
+            ]
+          },
+          options: {
+            barValueSpacing: 15,
+            title: {
+              display: true,
+              text: "CO2 és A Költekezés Összehasonlítása",
+              fontColor: '#000000',
+              fontSize: 32
+            },
+            legend: {
+              display: true,
+              labels: {
+                fontSize: 20
+              }
+            }
+          }
+        });
+        document.getElementById("co2pie").style.zIndex = "4";
+        break;
+    }
+
+    document.getElementById("clientui").style.display = "none";
+    document.querySelector(".character-name").innerText = "Köszönjük, hogy játszottál!";
+    document.querySelector(".countdown").style.fontSize = "40px";
+    document.querySelector(".countdown").innerText = "A játék véget ért...";
+    state++;
+
+    /*worldContainer.playing = playing;
+    world.set(worldContainer);
+    document.getElementById("button-host").style.display = "";
+    document.querySelector(".gamedata").style.display = "none";
+    document.querySelector(".countdown").style.fontSize = "40px";
+    document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
+    if(isHost === true)
+    {
+      playingmusic = false;
+      playRandomLobby();
+      document.getElementById("qr").style.display = "";
+      writeNames();
+    }*/
   }
 
   function startGame()

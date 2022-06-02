@@ -1,0 +1,138 @@
+[
+  {
+    "text": "Elhívtak a barátaid suli után mekizni.",
+    "aText": "Meh, nincs kedvem.",
+    "bText": "Persze, hogy megyek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 3,
+      "Wealthyness": 1,
+      "CO": 3
+    }
+  },
+  {
+    "text": "A párod elhívott vacsorázni.",
+    "aText": "Egy jó steaket, legyen szíves!",
+    "bText": "Valami salátát szeretnék.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 4,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 1,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Választás van!",
+    "aText": "Hajrá \"FizetekNeked\" párt!",
+    "bText": "Hajrá \"Zöld Jövöért Küzdünk\" párt!",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 3,
+      "CO": 4
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Kezd elöregedni a telefonod.",
+    "aText": "Itt az ideje lecserélni.",
+    "bText": "Addig használom amíg jó.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 1,
+      "Wealthyness": 2,
+      "CO": 2
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "Ma úgy döntött a vonatod, hogy nem jön.",
+    "aText": "Hát akkor irány haza.",
+    "bText": "Szüleim csak elvisznek.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 1,
+      "CO": 2
+    }
+  },
+  {
+    "text": "A főnököd előléptetést ajánlott fel. Ez viszont azt jelenti, hogy hosszabb lenne a munkaidőd.",
+    "aText": "Elfogadom.",
+    "bText": "Nem fogadom el.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 1,
+      "CO": 1
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 0,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  },
+  {
+    "text": "A lakhelyeden nincs légkondi.",
+    "aText": "Annyira csak nem lesz meleg.",
+    "bText": "Félre rakok egyre.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -2,
+      "Wealthyness": 0,
+      "CO": 0
+    },
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": 2,
+      "Wealthyness": 6,
+      "CO": 3
+    }
+  },
+  {
+    "aText": "Csak eldobom.",
+    "bText": "Majd otthon kidobom.",
+    "aOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 2
+    },
+    "text": "Nincs a közelben szemetes, pedig ki kéne dobnod egy zacskót.",
+    "bOption": {
+      "Temperature": 0,
+      "Happyness": -1,
+      "Wealthyness": 0,
+      "CO": 0
+    }
+  }
+]
