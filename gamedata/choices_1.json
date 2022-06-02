@@ -74,7 +74,7 @@
     "aOption": {
       "Temperature": 0,
       "Happyness": 1,
-      "Wealthyness": ,
+      "Wealthyness": 0,
       "CO": 0
     },
     "bOption": {

@@ -188,6 +188,7 @@ let players = {};
           document.getElementById("button-host").style.display = "";
           document.getElementById("qr").style.display = "";
           document.querySelector(".bg").style.display = "";
+          document.getElementById("makers").style.display = "";
           //document.querySelector(".gamedata").style.display = "";
 
           document.querySelector(".countdown").innerText = "Várakozás játékosokra...";
