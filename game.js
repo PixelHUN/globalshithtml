@@ -685,6 +685,7 @@ let players = {};
       document.querySelector(".gamedata").style.display = "";
     }
     else {
+      console.log(players[playerId].profile.class);
       switch(players[playerId].profile.class)
       {
         case 0:
