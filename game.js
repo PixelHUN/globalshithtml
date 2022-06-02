@@ -1,9 +1,5 @@
 // What if you'd work now?
-let choices;
-fetch("./gamedata/choices.json")
-.then(res => res.json())
-.then(data => choices = data)
-.then(() => console.log(choices));
+var choices;
 
 let profiles;
 fetch("./gamedata/profiles.json")
