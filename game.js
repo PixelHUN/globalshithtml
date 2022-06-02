@@ -666,7 +666,7 @@ let players = {};
       lobby.pause();
       lobby.currentTime = 0;
       allPacketsRef.remove();
-      countdown(30);
+      countdown(90);
       waitType="endgame";
       countdownFinished = false;
 
@@ -689,62 +689,71 @@ let players = {};
           fetch("./gamedata/choices_0.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 1:
           // draw question from class 1
           fetch("./gamedata/choices_1.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 2:
           // draw question from class 1
           fetch("./gamedata/choices_2.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 3:
           // draw question from class 1
           fetch("./gamedata/choices_3.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 4:
           // draw question from class 1
           fetch("./gamedata/choices_4.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 5:
           // draw question from class 1
           fetch("./gamedata/choices_5.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 6:
           // draw question from class 1
           fetch("./gamedata/choices_6.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         case 7:
           // draw question from class 1
           fetch("./gamedata/choices_7.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
         default:
           fetch("./gamedata/choices.json")
           .then(res => res.json())
           .then(data => choices = data)
-          .then(() => console.log(choices));
+          .then(() => console.log(choices))
+          .then(() => showChoice());
           break;
       }
 
@@ -753,8 +762,6 @@ let players = {};
       document.querySelector(".character-name").style.display = "none";
       document.getElementById("nongameplay").style.display = "none";
       document.querySelector(".gamedata").style.display = "none";
-
-      showChoice();
     }
   }
 
