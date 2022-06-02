@@ -694,6 +694,55 @@ let players = {};
           .then(data => choices = data)
           .then(() => console.log(choices));
           break;
+        case 1:
+          // draw question from class 1
+          fetch("./gamedata/choices_1.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 2:
+          // draw question from class 1
+          fetch("./gamedata/choices_2.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 3:
+          // draw question from class 1
+          fetch("./gamedata/choices_3.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 4:
+          // draw question from class 1
+          fetch("./gamedata/choices_4.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 5:
+          // draw question from class 1
+          fetch("./gamedata/choices_5.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 6:
+          // draw question from class 1
+          fetch("./gamedata/choices_6.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
+        case 7:
+          // draw question from class 1
+          fetch("./gamedata/choices_7.json")
+          .then(res => res.json())
+          .then(data => choices = data)
+          .then(() => console.log(choices));
+          break;
         default:
           fetch("./gamedata/choices.json")
           .then(res => res.json())
