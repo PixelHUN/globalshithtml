@@ -472,11 +472,18 @@ let players = {};
 
   var state = 0;
 
+  function resetChart() {
+    document.getElementById("co2pie").remove(); // this is my <canvas> element
+    document.body.innerHTML += '<canvas id="co2pie" style="width:700; height:700; position: absolute; max-width: 1351px; max-height: 675px;"></canvas>';
+  };
+
   function endState()
   {
+    resetChart();
     document.getElementById("button-host").style.display = "";
     document.getElementById("button-host").innerText = "Következő...";
     document.getElementById("button-host").onclick = function() {endState()};
+    document.querySelector(".character-name").innerText = "";
 
     switch(state)
     {
@@ -519,6 +526,7 @@ let players = {};
         var xValues = ["É. Amerika","D. Amerika","Európa","Afrika","Ázsia","Ausztrália"];
         var yValues = [worldContainer.NAmerica.CO,worldContainer.SAmerica.CO,worldContainer.Europe.CO,worldContainer.Africa.CO,worldContainer.Asia.CO,worldContainer.Australia.CO,];
         var yValuesTwo = [worldContainer.NAmerica.Wealthyness,worldContainer.SAmerica.Wealthyness,worldContainer.Europe.Wealthyness,worldContainer.Africa.Wealthyness,worldContainer.Asia.Wealthyness,worldContainer.Australia.Wealthyness,];
+        var yValuesThree = [worldContainer.NAmerica.Happyness,worldContainer.SAmerica.Happyness,worldContainer.Europe.Happyness,worldContainer.Africa.Happyness,worldContainer.Asia.Happyness,worldContainer.Australia.Happyness,];
         console.log(yValues);
         console.log(xValues);
         var ctx = document.getElementById("co2pie").getContext('2d');
@@ -528,28 +536,19 @@ let players = {};
             labels: xValues,
             datasets: [
               {
-                backgroundColor: barColors[0],
-                data: [yValues[0], yValuesTwo[0]]
-              },
-              {
-                backgroundColor: barColors[1],
-                data: [yValues[1], yValuesTwo[1]]
-              },
-              {
-                backgroundColor: barColors[2],
-                data: [yValues[2], yValuesTwo[2]]
-              },
-              {
-                backgroundColor: barColors[3],
-                data: [yValues[3], yValuesTwo[3]]
-              },
-              {
+                label: "Jókedv",
                 backgroundColor: barColors[4],
-                data: [yValues[4], yValuesTwo[4]]
+                data: yValuesThree
               },
               {
-                backgroundColor: barColors[5],
-                data: [yValues[5], yValuesTwo[5]]
+                label: "CO2",
+                backgroundColor: barColors[0],
+                data: yValues
+              },
+              {
+                label: "Költekezés",
+                backgroundColor: barColors[1],
+                data: yValuesTwo
               }
             ]
           },
@@ -557,7 +556,7 @@ let players = {};
             barValueSpacing: 15,
             title: {
               display: true,
-              text: "CO2 és A Költekezés Összehasonlítása",
+              text: "Adatok Összehasonlítása",
               fontColor: '#000000',
               fontSize: 32
             },
@@ -571,14 +570,62 @@ let players = {};
         });
         document.getElementById("co2pie").style.zIndex = "4";
         break;
+
+      case 2:
+        var playss = [];
+
+        for (var i = 0; i < playerUIDs.length; i++) {
+          if(playerUIDs[i] != undefined)
+          {
+            console.log(i);
+            console.log(playerUIDs[i]);
+            console.log(worldContainer.profiles);
+            playss[i] = players[playerUIDs[i]];
+
+          }
+        }
+        objects = playss;
+        var coValues = objects.map(function(o) { return o.CO; });
+        coValues = Array.from(objects, o => o.CO);
+        var coMax = Math.max(...coValues);
+        var maxXObjects = objects.filter(function(o) { return o.CO === coMax; });
+
+        var weValues = objects.map(function(o) { return o.Wealthyness; });
+        weValues = Array.from(objects, o => o.Wealthyness);
+        var weMax = Math.max(...weValues);
+        var maxWealthObjects = objects.filter(function(o) { return o.Wealthyness === weMax; });
+
+        var haValues = objects.map(function(o) { return o.Happyness; });
+        haValues = Array.from(objects, o => o.Happyness);
+        var haMin = Math.min(...haValues);
+        var minHappyObjects = objects.filter(function(o) { return o.Happyness === haMin; });
+
+        var haValues = objects.map(function(o) { return o.Happyness; });
+        haValues = Array.from(objects, o => o.Happyness);
+        var haMax = Math.max(...haValues);
+        var maxHappyObjects = objects.filter(function(o) { return o.Happyness === haMax; });
+
+        console.log(maxXObjects);
+        var mostcoplayer = maxXObjects[0].uname;
+        var mostcoplayerprofile = maxXObjects[0].profile.name;
+        var mostwealthplayer = maxWealthObjects[0].uname;
+        var mostwealthplayerprofile = maxWealthObjects[0].profile.name;
+        var leasthappyplayer = minHappyObjects[0].uname;
+        var leasthappyplayerprofile = minHappyObjects[0].profile.name;
+        var mosthappyplayer = maxHappyObjects[0].uname;
+        var mosthappyplayerprofile = maxHappyObjects[0].profile.name;
+        document.querySelector(".character-name").innerText = "Legtöbb CO2 kibocsátó: \n"+mostcoplayer+" ("+mostcoplayerprofile+" szerepében)"+"\n\n"+
+                                                              "Legnagyobb költekező: \n"+mostwealthplayer+" ("+mostwealthplayerprofile+" szerepében)"+"\n\n"+
+                                                              "Legboldogabb életvitel: \n"+mosthappyplayer+" ("+mosthappyplayerprofile+" szerepében)"+"\n\n"+
+                                                              "Legszomorúbb életvitel: \n"+leasthappyplayer+" ("+leasthappyplayerprofile+" szerepében)";
+        break;
     }
 
     document.getElementById("clientui").style.display = "none";
-    document.querySelector(".character-name").innerText = "Köszönjük, hogy játszottál!";
     document.querySelector(".countdown").style.fontSize = "40px";
     document.querySelector(".countdown").innerText = "A játék véget ért...";
     state++;
-    if(state > 1)
+    if(state > 2)
       state = 0;
 
     /*worldContainer.playing = playing;
@@ -671,6 +718,8 @@ let players = {};
     {
       lobby.pause();
       lobby.currentTime = 0;
+      game = new Audio('./audio/kongbong.mp3');
+      game.play();
       allPacketsRef.remove();
       countdown(60);
       waitType="endgame";
