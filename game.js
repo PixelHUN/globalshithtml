@@ -1,5 +1,5 @@
 // What if you'd work now?
-var choices;
+let choices = [];
 
 let profiles;
 fetch("./gamedata/profiles.json")
